@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models
 {
-    public class Horror
+    public class Horror : Movie
     {
         public int ScaryLevel { get; set; }
         public bool SupernaturalElements { get; set; }
