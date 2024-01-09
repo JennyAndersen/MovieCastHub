@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Movies\Commands\" />
+    <Folder Include="Movies\Queries\" />
+  </ItemGroup>
+
 </Project>
