@@ -1,4 +1,5 @@
-﻿namespace Domain.Models
+﻿#nullable disable
+namespace Domain.Models
 {
     public class User
     {
@@ -6,5 +7,6 @@
         public required string Username { get; set; }
         public required string Password { get; set; }
         //FavoriteGenre
+        public ICollection<UserMovie> UserMovies { get; set; }
     }
 }
