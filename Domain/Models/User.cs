@@ -1,4 +1,4 @@
-﻿#nullable disable
+﻿
 namespace Domain.Models
 {
     public class User
@@ -6,7 +6,6 @@ namespace Domain.Models
         public Guid UserId { get; set; }
         public required string Username { get; set; }
         public required string Password { get; set; }
-        //FavoriteGenre
         public ICollection<UserMovie> UserMovies { get; set; }
     }
 }
