@@ -9,6 +9,8 @@
   <ItemGroup>
     <Folder Include="Movies\Commands\" />
     <Folder Include="Movies\Queries\" />
+    <Folder Include="Users\Commands\" />
+    <Folder Include="Users\Querys\" />
   </ItemGroup>
 
 </Project>
