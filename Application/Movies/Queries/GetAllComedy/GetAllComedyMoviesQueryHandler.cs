@@ -1,5 +1,5 @@
 ﻿using Domain.Models;
-using Infrastructure;
+using Infrastructure.Interfaces;
 using MediatR;
 
 namespace Application.Movies.Queries.GetAllComedy

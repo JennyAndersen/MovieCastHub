@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Interfaces\**" />
-    <Compile Remove="Repositories\**" />
-    <EmbeddedResource Remove="Interfaces\**" />
-    <EmbeddedResource Remove="Repositories\**" />
-    <None Remove="Interfaces\**" />
-    <None Remove="Repositories\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.15">

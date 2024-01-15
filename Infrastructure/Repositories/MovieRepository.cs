@@ -1,8 +1,9 @@
 ﻿using Domain.Models;
 using Infrastructure.Data;
+using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure
+namespace Infrastructure.Repositories
 {
     public class MovieRepository : IMovieRepository
     {

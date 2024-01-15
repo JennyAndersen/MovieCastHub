@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace Infrastructure
+namespace Infrastructure.Interfaces
 {
     public interface IMovieRepository
     {
