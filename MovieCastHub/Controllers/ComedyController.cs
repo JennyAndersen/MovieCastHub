@@ -40,10 +40,13 @@ namespace API.Controllers
         // Get ComedyMovie by Direcgtor 
 
         // Add new ComedyMovie 
-
+       
         [HttpPost]
         [Route("addNewComedyMovie")]
+           public async Task<IActionResult> AddComedyMovie([FromBody] ComedyMovieDto newComedyMovie)
+        {
 
+        }
         // Update ComedyMovie 
 
         [HttpPut]
