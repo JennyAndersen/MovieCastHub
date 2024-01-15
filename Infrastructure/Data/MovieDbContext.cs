@@ -12,14 +12,14 @@ namespace Infrastructure.Data
 
         public virtual DbSet<Comedy> ComedyMovies { get; set; }
         public virtual DbSet<Horror> HorrorMovies { get; set; }
-        public virtual DbSet<Documentary> DocumentaryMovies { get; set;}
-        public virtual DbSet<UserMovie> UserMovie {  get; set; }
+        public virtual DbSet<Documentary> DocumentaryMovies { get; set; }
+        public virtual DbSet<UserMovie> UserMovie { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=MSI\\SQLEXPRESS; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("Server=LUCASDATOR\\SQLEXPRESS; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
         }
     }
 }
