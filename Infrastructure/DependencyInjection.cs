@@ -1,6 +1,4 @@
 ﻿using Infrastructure.Data;
-using Infrastructure.Interfaces;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,11 +10,9 @@ namespace Infrastructure
         {
             services.AddDbContext<MovieDbContext>(options =>
             {
-                options.UseSqlServer("Server=LUCASDATOR\\SQLEXPRESS; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+                options.UseSqlServer("Server=localhost\\MSSQLSERVER01; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
 
             });
-
-            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
