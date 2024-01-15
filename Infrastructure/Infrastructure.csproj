@@ -10,7 +10,6 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.15" />
@@ -24,6 +23,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
