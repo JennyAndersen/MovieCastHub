@@ -14,16 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Movies\Commands\" />
-    <Folder Include="Movies\Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <Folder Include="Movies\Queries\" />
   </ItemGroup>
 
 </Project>
