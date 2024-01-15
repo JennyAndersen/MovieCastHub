@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.15" />
@@ -28,5 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
+
 
 </Project>
