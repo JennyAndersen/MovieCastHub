@@ -1,4 +1,6 @@
-﻿using Application.Movies.Queries.GetAllComedy;
+﻿using Application.Dtos.Movie;
+using Application.Movies.Commands.Comedies.AddComedyMovie;
+using Application.Movies.Queries.Comedies.GetAllComedy;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,13 +42,24 @@ namespace API.Controllers
         // Get ComedyMovie by Direcgtor 
 
         // Add new ComedyMovie 
-       
+        */
+
         [HttpPost]
         [Route("addNewComedyMovie")]
-           public async Task<IActionResult> AddComedyMovie([FromBody] ComedyMovieDto newComedyMovie)
+        public async Task<IActionResult> AddComedyMovie([FromBody] ComedyMovieDto newComedyMovie)
         {
-
+            try
+            {
+                var result = await _mediator.Send(new AddComedyMovieCommand(newComedyMovie));
+                return result == null ? BadRequest("Could not add the comedy moview.") : Ok(newComedyMovie);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
         }
+
+        /*
         // Update ComedyMovie 
 
         [HttpPut]

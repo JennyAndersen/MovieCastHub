@@ -1,4 +1,6 @@
 ﻿using Infrastructure.Data;
+using Infrastructure.Interfaces;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +15,8 @@ namespace Infrastructure
                 options.UseSqlServer("Server=localhost\\MSSQLSERVER01; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
 
             });
+
+            services.AddScoped<IMovieRepository, MovieRepository>();
 
             return services;
         }

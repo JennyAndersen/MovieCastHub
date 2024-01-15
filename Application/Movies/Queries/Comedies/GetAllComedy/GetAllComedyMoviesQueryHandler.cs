@@ -1,8 +1,8 @@
 ﻿using Domain.Models;
-using Infrastructure;
+using Infrastructure.Interfaces;
 using MediatR;
 
-namespace Application.Movies.Queries.GetAllComedy
+namespace Application.Movies.Queries.Comedies.GetAllComedy
 {
     public class GetAllComedyMoviesQueryHandler : IRequestHandler<GetAllComedyMoviesQuery, List<Comedy>>
     {
