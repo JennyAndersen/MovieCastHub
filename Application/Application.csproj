@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dtos\**" />
-    <EmbeddedResource Remove="Dtos\**" />
-    <None Remove="Dtos\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Movies\Commands\" />
     <Folder Include="Movies\Queries\" />
   </ItemGroup>
