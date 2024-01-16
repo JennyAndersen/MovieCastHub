@@ -1,6 +1,7 @@
 ﻿using Application.Dtos.Movie;
 using Application.Movies.Commands.Comedies.AddComedyMovie;
 using Application.Movies.Queries.Comedies.GetAllComedy;
+using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
 using Application.Movies.Queries.Comedies.GetComedyMovieByTitle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -55,8 +56,20 @@ namespace API.Controllers
         }
 
         // Get ComedyMovie by Director 
-        // [HttpGet]
-        // [Route("getComedyMovieByTitle/{title}")]
+        [HttpGet]
+        [Route("getComedyMovieByDirector/{director}")]
+        public async Task<IActionResult> GetComedyMovieByDirector(string director)
+        {
+            try
+            {
+                var comedyMovie = await _mediator.Send(new GetComedyMovieByDirectorQuery(director));
+                return comedyMovie == null ? NotFound($"No movie found with title '{director}'.") : Ok(comedyMovie);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
+        }
 
 
         // Add new ComedyMovie 
