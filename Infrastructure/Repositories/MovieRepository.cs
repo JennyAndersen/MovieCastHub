@@ -2,7 +2,6 @@
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
 
 namespace Infrastructure.Repositories
 {
@@ -20,7 +19,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Comedy>> GetAllComedyMoviesQuery() 
+        public async Task<List<Comedy>> GetAllComedyMoviesQuery()
         {
             var comedyMovies = await _context.Movies.OfType<Comedy>().ToListAsync();
             return comedyMovies;
