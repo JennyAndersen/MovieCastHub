@@ -19,10 +19,15 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Comedy>> GetAllComedyMoviesQuery()
+        public async Task<List<Comedy>> GetAllComedyMoviesQuery() //Specifik c
         {
             var comedyMovies = await _context.Movies.OfType<Comedy>().ToListAsync();
             return comedyMovies;
+        }
+
+        public async Task<Movie> GetByTitleAsync(string Title)
+        {
+            return await _context.Movies.SingleOrDefaultAsync(m => m.Title == Title);
         }
     }
 }
