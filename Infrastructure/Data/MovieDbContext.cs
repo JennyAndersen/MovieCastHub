@@ -19,7 +19,7 @@ namespace Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-B0SACG3; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
         }
     }
 }
