@@ -4,7 +4,6 @@ using Application.Users.Commands.DeleteUser;
 using Application.Users.Commands.UpdateUser;
 using Application.Users.Querys.GetAllUsers;
 using Application.Users.Querys.GetUsersById;
-using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -83,7 +82,7 @@ namespace API.Controllers
             {
                 var command = new DeleteUserCommand(id);
                 await _mediator.Send(command);
-                return NoContent();
+                return Ok("Delete successful");
             }
             catch (ArgumentException ex)
             {
