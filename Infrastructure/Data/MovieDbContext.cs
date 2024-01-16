@@ -5,6 +5,10 @@ namespace Infrastructure.Data
 {
     public class MovieDbContext : DbContext
     {
+        public MovieDbContext()
+        {
+
+        }
         public MovieDbContext(DbContextOptions options) : base(options)
         {
 

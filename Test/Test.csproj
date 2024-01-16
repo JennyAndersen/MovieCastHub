@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API\" />
-    <Folder Include="Application\" />
+    <Folder Include="API\UserControllerTest\" />
+    <Folder Include="Application\UserUnitTest\" />
   </ItemGroup>
 
 </Project>
