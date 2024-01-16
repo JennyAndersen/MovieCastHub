@@ -15,7 +15,13 @@ namespace Application.Users.Querys.GetUsersById
 
         public async Task<User> Handle(GetUsersByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _userRepository.GetUserByIdAsync(request.UserId);
+            var user = await _userRepository.GetUserByIdAsync(request.UserId);
+            if (user == null)
+            {
+                throw new ArgumentException("User not found");
+            }
+
+            return user;
         }
     }
 }
