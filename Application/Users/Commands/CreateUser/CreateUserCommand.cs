@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#nullable disable
+using Application.Dtos.User;
+using Domain.Models;
+using MediatR;
+
 
 namespace Application.Users.Commands.CreateUser
 {
-    internal class CreateUserCommand
+    public class CreateUserCommand : IRequest<User>
     {
+        public UserDto UserDto { get; set; }
+
+        public CreateUserCommand(UserDto userDto)
+        {
+            UserDto = userDto;
+        }
     }
 }
