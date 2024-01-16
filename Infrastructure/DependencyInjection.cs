@@ -12,11 +12,12 @@ namespace Infrastructure
         {
             services.AddDbContext<MovieDbContext>(options =>
             {
-                options.UseSqlServer("Server=localhost\\MSSQLSERVER01; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+                options.UseSqlServer("Server=MSI\\SQLEXPRESS; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
 
             });
 
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
