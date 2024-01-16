@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Movies.Queries.Comedies.GetComedyMovieByTitle
 {
-    public class GetComedyMovieByTitleQuery : IRequest<Movie>
+    public class GetComedyMovieByTitleQuery : IRequest<List<Movie>>
     {
         public GetComedyMovieByTitleQuery(string title)
         {

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Movies.Queries.Comedies.GetComedyMovieByTitle
 {
-    public class GetComedyMovieByTitleQueryHandler : IRequestHandler<GetComedyMovieByTitleQuery, Movie>
+    public class GetComedyMovieByTitleQueryHandler : IRequestHandler<GetComedyMovieByTitleQuery, List<Movie>>
     {
         private readonly IMovieRepository _movieRepository;
         public GetComedyMovieByTitleQueryHandler(IMovieRepository movieRepository)
@@ -12,9 +12,15 @@ namespace Application.Movies.Queries.Comedies.GetComedyMovieByTitle
             _movieRepository = movieRepository;
         }
 
-        public async Task<Movie> Handle(GetComedyMovieByTitleQuery request, CancellationToken cancellationToken)
+        public async Task<List<Movie>> Handle(GetComedyMovieByTitleQuery request, CancellationToken cancellationToken)
         {
-            return await _movieRepository.GetByTitleAsync(request.Title);
+            var movies = await _movieRepository.GetByTitleAsync(request.Title);
+
+            var comedyMovies = movies
+            .Where(m => m.GetType() == typeof(Comedy))
+            .ToList();
+
+            return comedyMovies;
         }
     }
 }
