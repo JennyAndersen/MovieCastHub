@@ -1,5 +1,6 @@
 ﻿using Application.Dtos.User;
 using Application.Users.Querys.GetAllUsers;
+using Application.Users.Querys.GetUsersById;
 using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -24,5 +25,22 @@ namespace API.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(Guid id)
+        {
+            var query = new GetUsersByIdQuery(id);
+            var user = await _mediator.Send(query);
+
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return NotFound($"No user found with ID '{id}'.");
+            }
+        }
+
     }
 }
