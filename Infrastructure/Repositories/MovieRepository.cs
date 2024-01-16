@@ -19,6 +19,13 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(Guid movieId)
+        {
+            var comedyMovieToDelete = await _context.Movies.FindAsync(movieId) ?? throw new ArgumentNullException(nameof(movieId), "Cannot delete null movie.");
+            _context.Movies.Remove(comedyMovieToDelete);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<List<Comedy>> GetAllComedyMoviesQuery()
         {
             var comedyMovies = await _context.Movies.OfType<Comedy>().ToListAsync();
@@ -30,6 +37,12 @@ namespace Infrastructure.Repositories
             return await _context.Movies
         .Where(m => m.Director == director)
         .ToListAsync();
+        }
+
+        public async Task<Movie> GetByIdAsync(Guid MovieId)
+        {
+            var movie = await _context.Movies.FindAsync(MovieId);
+            return movie!;
         }
 
         public async Task<List<Movie>> GetByTitleAsync(string title)

@@ -1,5 +1,6 @@
 ﻿using Application.Dtos.Movie;
 using Application.Movies.Commands.Comedies.AddComedyMovie;
+using Application.Movies.Commands.Comedies.DeleteComedyMovieById;
 using Application.Movies.Queries.Comedies.GetAllComedy;
 using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
 using Application.Movies.Queries.Comedies.GetComedyMovieByTitle;
@@ -20,8 +21,6 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        // Get all comedy movies 
-
         [HttpGet]
         [Route("getAllComedyMovies")]
         public async Task<IActionResult> GetAllComedyMovies()
@@ -39,7 +38,6 @@ namespace API.Controllers
 
         }
 
-        // Get ComedyMovie by Title 
         [HttpGet]
         [Route("getComedyMovieByTitle/{title}")]
         public async Task<IActionResult> GetComedyMovieByTitle(string title)
@@ -55,7 +53,6 @@ namespace API.Controllers
             }
         }
 
-        // Get ComedyMovie by Director 
         [HttpGet]
         [Route("getComedyMovieByDirector/{director}")]
         public async Task<IActionResult> GetComedyMovieByDirector(string director)
@@ -71,8 +68,6 @@ namespace API.Controllers
             }
         }
 
-
-        // Add new ComedyMovie 
         [HttpPost]
         [Route("addNewComedyMovie")]
         public async Task<IActionResult> AddComedyMovie([FromBody] ComedyMovieDto newComedyMovie)
@@ -93,12 +88,14 @@ namespace API.Controllers
 
         [HttpPut]
         [Route("updateComedyMovie/{updatedComedyMovieId}")]
-
-        // Delete ComedyMovie by ID 
+        */
 
         [HttpDelete]
-        [Route("deleteComedyMovies/{deletedComedyMovieIdw}")]
-        */
+        [Route("deleteComedyMovie/{deletedComedyMovieId}")]
+        public async Task<IActionResult> DeleteComedyMovie(Guid deletedComedyMovieId)
+        {
+            var result = await _mediator.Send(new DeleteComedyMovieByIdCommand(deletedComedyMovieId));
+            return result != null ? Ok($"Movie with ID '{deletedComedyMovieId}' has been deleted.") : NotFound($"No Movie found with ID '{deletedComedyMovieId}' for deletion.");
+        }
     }
-
 }
