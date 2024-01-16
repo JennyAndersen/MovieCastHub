@@ -1,8 +1,9 @@
 ﻿using Domain.Models;
 using Infrastructure.Data;
+using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure
+namespace Infrastructure.Repositories
 {
     public class MovieRepository : IMovieRepository
     {
@@ -10,6 +11,12 @@ namespace Infrastructure
         public MovieRepository(MovieDbContext context)
         {
             _context = context;
+        }
+
+        public async Task AddMovieAsync<T>(T entity) where T : class
+        {
+            _context.Set<T>().Add(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Comedy>> GetAllComedyMoviesQuery()

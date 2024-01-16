@@ -1,3 +1,4 @@
+using Application;
 using Infrastructure;
 
 internal class Program
@@ -10,6 +11,7 @@ internal class Program
 
         builder.Services.AddControllers();
         builder.Services.AddInfrastructure();
+        builder.Services.AddApplication();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
