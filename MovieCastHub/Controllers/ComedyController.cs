@@ -2,7 +2,6 @@
 using Application.Movies.Commands.Comedies.AddComedyMovie;
 using Application.Movies.Queries.Comedies.GetAllComedy;
 using Application.Movies.Queries.Comedies.GetComedyMovieByTitle;
-using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

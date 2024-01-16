@@ -1,5 +1,4 @@
-﻿using Application.Dtos.Movie;
-using Domain.Models;
+﻿using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
 
