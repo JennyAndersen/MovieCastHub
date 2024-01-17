@@ -6,11 +6,11 @@ using MediatR;
 
 namespace Application.Users.Commands.CreateUser
 {
-    public class CreateUserCommand : IRequest<User>
+    public class RegisterCommand : IRequest<User>
     {
         public UserDto UserDto { get; set; }
 
-        public CreateUserCommand(UserDto userDto)
+        public RegisterCommand(UserDto userDto)
         {
             UserDto = userDto;
         }

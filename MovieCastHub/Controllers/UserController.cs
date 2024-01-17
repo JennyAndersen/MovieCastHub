@@ -44,7 +44,7 @@ namespace API.Controllers
 
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost("Register")]
         public async Task<IActionResult> CreateUser([FromBody] UserDto userDto)
         {
             try
