@@ -16,6 +16,11 @@ namespace Application.Users.Commands.CreateUser
 
         public async Task<User> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
+            if (string.IsNullOrEmpty(request.UserDto.Username) || string.IsNullOrEmpty(request.UserDto.Password))
+            {
+                throw new ArgumentException("Username and Password are required");
+            }
+
             var newUser = new User
             {
                 Username = request.UserDto.Username,

@@ -1,5 +1,6 @@
 ﻿using Application.Dtos.User;
 using Application.Users.Commands.CreateUser;
+using Application.Users.Commands.UpdateUser;
 using Application.Users.Querys.GetAllUsers;
 using Application.Users.Querys.GetUsersById;
 using Domain.Models;
@@ -27,33 +28,51 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetUserById/{id}")]
         public async Task<IActionResult> GetUserById(Guid id)
         {
-            var query = new GetUsersByIdQuery(id);
-            var user = await _mediator.Send(query);
-
-            if (user != null)
+            try
             {
+                var query = new GetUsersByIdQuery(id);
+                var user = await _mediator.Send(query);
                 return Ok(user);
             }
-            else
+            catch (ArgumentException ex)
             {
-                return NotFound($"No user found with ID '{id}'.");
+                return NotFound(ex.Message);
             }
+
         }
 
         [HttpPost("AddUser")]
         public async Task<IActionResult> CreateUser([FromBody] UserDto userDto)
         {
-            var command = new CreateUserCommand(userDto);
-            var user = await _mediator.Send(command);
-            if (user != null)
+            try
             {
+                var command = new CreateUserCommand(userDto);
+                var user = await _mediator.Send(command);
                 return Ok(user);
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-            return BadRequest("Unable to create user.");
+        [HttpPut("UpdateUser/{id}")]
+        public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserUpdateDto userUpdateDto)
+        {
+            try
+            {
+                var command = new UpdateUserCommand(id, userUpdateDto);
+                var updatedUser = await _mediator.Send(command);
+                return Ok(updatedUser);
+            }
+            catch (ArgumentException ex) when (ex.Message == "User not found")
+            {
+                return NotFound(ex.Message);
+            }
+
         }
 
     }
