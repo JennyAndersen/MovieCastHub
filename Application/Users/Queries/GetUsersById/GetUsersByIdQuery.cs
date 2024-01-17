@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Models;
+using MediatR;
+
 
 namespace Application.Users.Querys.GetUsersById
 {
-    internal class GetUsersByIdQuery
+    public class GetUsersByIdQuery : IRequest<User>
     {
+        public Guid UserId { get; }
+
+        public GetUsersByIdQuery(Guid userId)
+        {
+            UserId = userId;
+        }
     }
 }
