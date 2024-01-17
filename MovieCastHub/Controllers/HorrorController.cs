@@ -2,7 +2,7 @@
 using Application.Movies.Commands.Horrors.AddHorrorMovie;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
+//hej<3
 namespace API.Controllers
 {
     [Route("api/[controller]")]
