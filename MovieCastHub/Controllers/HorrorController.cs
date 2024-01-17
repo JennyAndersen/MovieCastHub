@@ -5,7 +5,7 @@ using Application.Movies.Queries.Horrors.GetAllHorror;
 using Application.Movies.Queries.Horrors.GetHorrorMovieByDirector;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
+//test
 namespace API.Controllers
 {
     [Route("api/[controller]")]
