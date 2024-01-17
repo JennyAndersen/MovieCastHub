@@ -1,9 +1,9 @@
 ﻿using Application.Dtos.User;
 using Application.Users.Commands.CreateUser;
+using Application.Users.Commands.DeleteUser;
 using Application.Users.Commands.UpdateUser;
 using Application.Users.Querys.GetAllUsers;
 using Application.Users.Querys.GetUsersById;
-using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,6 +69,22 @@ namespace API.Controllers
                 return Ok(updatedUser);
             }
             catch (ArgumentException ex) when (ex.Message == "User not found")
+            {
+                return NotFound(ex.Message);
+            }
+
+        }
+
+        [HttpDelete("DeleteUser/{id}")]
+        public async Task<IActionResult> DeleteUser(Guid id)
+        {
+            try
+            {
+                var command = new DeleteUserCommand(id);
+                await _mediator.Send(command);
+                return Ok("Delete successful");
+            }
+            catch (ArgumentException ex)
             {
                 return NotFound(ex.Message);
             }

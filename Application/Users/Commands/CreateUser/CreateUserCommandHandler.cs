@@ -1,5 +1,4 @@
-﻿using Application.Dtos.User;
-using Domain.Models;
+﻿using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
 
