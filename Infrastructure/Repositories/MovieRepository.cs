@@ -32,6 +32,12 @@ namespace Infrastructure.Repositories
             return comedyMovies;
         }
 
+        public async Task<List<Documentary>> GetAllDocumentaryMoviesQuery()
+        {
+            var documentaryMovies = await _context.Movies.OfType<Documentary>().ToListAsync();
+            return documentaryMovies;
+        }
+
         public async Task<List<Movie>> GetByDirectorAsync(string director)
         {
             return await _context.Movies
