@@ -14,20 +14,20 @@ namespace Test.Application.UserUnitTest.CommandTests
     public class CreateUserCommandHandlerTest
     {
         private Mock<IUserRepository> _mockUserRepository;
-        private CreateUserCommandHandler _handler;
+        private RegisterCommandHandler _handler;
 
         [SetUp]
         public void Setup()
         {
             _mockUserRepository = new Mock<IUserRepository>();
-            _handler = new CreateUserCommandHandler(_mockUserRepository.Object);
+            _handler = new RegisterCommandHandler(_mockUserRepository.Object);
         }
 
         [Test, CustomAutoData]
         public async Task CreateUser_ShouldCreateUser_WhenCalledWithValidData(UserDto userDto)
         {
             // Arrange
-            var command = new CreateUserCommand(userDto);
+            var command = new RegisterCommand(userDto);
             _mockUserRepository.Setup(repo => repo.CreateUserAsync(It.IsAny<User>()))
                               .ReturnsAsync(new User { Username = userDto.Username, Password = userDto.Password });
 
