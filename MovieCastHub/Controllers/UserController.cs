@@ -44,12 +44,12 @@ namespace API.Controllers
 
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost("Register")]
         public async Task<IActionResult> CreateUser([FromBody] UserDto userDto)
         {
             try
             {
-                var command = new CreateUserCommand(userDto);
+                var command = new RegisterCommand(userDto);
                 var user = await _mediator.Send(command);
                 return Ok(user);
             }
