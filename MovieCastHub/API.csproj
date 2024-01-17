@@ -7,6 +7,77 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net7.0\API.deps.json" />
+    <Content Include="bin\Debug\net7.0\API.runtimeconfig.json" />
+    <Content Include="bin\Debug\net7.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net7.0\appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net7.0\API.dll" />
+    <None Include="bin\Debug\net7.0\API.exe" />
+    <None Include="bin\Debug\net7.0\API.pdb" />
+    <None Include="bin\Debug\net7.0\Application.dll" />
+    <None Include="bin\Debug\net7.0\Application.pdb" />
+    <None Include="bin\Debug\net7.0\Azure.Core.dll" />
+    <None Include="bin\Debug\net7.0\Azure.Identity.dll" />
+    <None Include="bin\Debug\net7.0\Domain.dll" />
+    <None Include="bin\Debug\net7.0\Domain.pdb" />
+    <None Include="bin\Debug\net7.0\FluentValidation.dll" />
+    <None Include="bin\Debug\net7.0\Humanizer.dll" />
+    <None Include="bin\Debug\net7.0\Infrastructure.dll" />
+    <None Include="bin\Debug\net7.0\Infrastructure.pdb" />
+    <None Include="bin\Debug\net7.0\MediatR.Contracts.dll" />
+    <None Include="bin\Debug\net7.0\MediatR.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Identity.Client.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.OpenApi.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.SqlServer.Server.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net7.0\Mono.TextTemplating.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" />
+    <None Include="bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll" />
+    <None Include="bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+    <None Include="bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+    <None Include="bin\Debug\net7.0\System.CodeDom.dll" />
+    <None Include="bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll" />
+    <None Include="bin\Debug\net7.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll" />
+    <None Include="bin\Debug\net7.0\System.Memory.Data.dll" />
+    <None Include="bin\Debug\net7.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net7.0\System.Security.Permissions.dll" />
+    <None Include="bin\Debug\net7.0\System.Windows.Extensions.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.15">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +88,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
