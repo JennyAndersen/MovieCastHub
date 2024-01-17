@@ -1,8 +1,11 @@
 ﻿using Application.Dtos.Movie;
 using Application.Movies.Commands.Horrors.AddHorrorMovie;
+using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
+using Application.Movies.Queries.Horrors.GetAllHorror;
+using Application.Movies.Queries.Horrors.GetHorrorMovieByDirector;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-//hej<3
+
 namespace API.Controllers
 {
     [Route("api/[controller]")]
@@ -17,31 +20,45 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        // Get all HorroMovies 
+        //  Get all HorroMovies
 
-        //[HttpGet]
-        //[Route("getAllHorroMovie")]
-        //public async Task<IActionResult> GetAllHorrorMovies()
-        //{
+        [HttpGet]
+        [Route("getAllHorrorMovie")]
+        public async Task<IActionResult> GetAllHorrorMovies()
+        {
 
-        //    try
-        //    {
-        //        var comedyMovies = await _mediator.Send(new GetAllComedyMoviesQuery());
-        //        return comedyMovies == null ? NotFound("No horror movies found.") : Ok(comedyMovies);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(500, "Internal Servor Error");
-        //    }
+            try
+            {
+                var horrorMovies = await _mediator.Send(new GetAllHorrorMoviesQuery());
+                return horrorMovies == null ? NotFound("No horror movies found.") : Ok(horrorMovies);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
 
-        //}
-        /*
+        }
+
         // Get HorroMovie by Title 
 
         // Get HorroMovie by Direcgtor 
+        [HttpGet]
+        [Route("getHorrorMovieByDirector/{director}")]
+        public async Task<IActionResult> GetHorrorMovieByDirector(string director)
+        {
+            try
+            {
+                var horrorMovie = await _mediator.Send(new GetHorrorMovieByDirectorQuery(director));
+                return horrorMovie == null ? NotFound($"No movies found with  '{director}'.") : Ok(horrorMovie);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
+        }
 
-       
-        */
+
+
 
         // Add new HorroMovie 
 
