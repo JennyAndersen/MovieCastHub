@@ -49,7 +49,7 @@ namespace API.Controllers
         {
             try
             {
-                var command = new CreateUserCommand(userDto);
+                var command = new RegisterCommand(userDto);
                 var user = await _mediator.Send(command);
                 return Ok(user);
             }
