@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+using Domain.Models;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +30,12 @@ namespace Infrastructure.Repositories
         {
             var comedyMovies = await _context.Movies.OfType<Comedy>().ToListAsync();
             return comedyMovies;
+        }
+
+        public async Task<List<Documentary>> GetAllDocumentaryMoviesAsync()
+        {
+            var documentaryMovies = await _context.Movies.OfType<Documentary>().ToListAsync();
+            return documentaryMovies;
         }
 
         public async Task<List<Horror>> GetAllHorrorsMoviesAsync()

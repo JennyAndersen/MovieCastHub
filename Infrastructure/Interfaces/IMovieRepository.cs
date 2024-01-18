@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+using Domain.Models;
 
 namespace Infrastructure.Interfaces
 {
@@ -6,6 +6,7 @@ namespace Infrastructure.Interfaces
     {
         Task AddMovieAsync<T>(T entity) where T : class;
         Task DeleteAsync(Guid movieId);
+        Task<List<Documentary>> GetAllDocumentaryMoviesAsync();
         Task<List<Comedy>> GetAllComedyMoviesAsync();
         Task<List<Horror>> GetAllHorrorsMoviesAsync();
         Task<List<Movie>> GetByDirectorAsync(string director);
