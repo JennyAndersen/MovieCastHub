@@ -1,8 +1,9 @@
 ﻿using Application.Dtos.Movie;
 using Application.Movies.Commands.Horrors.AddHorrorMovie;
-using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
+using Application.Movies.Commands.Horrors.DeleteHorrorMovieById;
 using Application.Movies.Queries.Horrors.GetAllHorror;
 using Application.Movies.Queries.Horrors.GetHorrorMovieByDirector;
+using Application.Movies.Queries.Horrors.GetHorrorMovieByTitle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,7 +40,22 @@ namespace API.Controllers
 
         }
 
-        // Get HorroMovie by Title 
+        // Get HorrorMovie by Title 
+
+        [HttpGet]
+        [Route("getHorrorMovieByTitle/{title}")]
+        public async Task<IActionResult> GetHorrorMovieByTitle(string title)
+        {
+            try
+            {
+                var horrorMovie = await _mediator.Send(new GetHorrorMovieByTitleQuery(title));
+                return horrorMovie == null ? NotFound($"No movie found with title '{title}'.") : Ok(horrorMovie);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
+        }
 
         // Get HorroMovie by Direcgtor 
         [HttpGet]
@@ -77,17 +93,22 @@ namespace API.Controllers
             }
         }
 
-        /*
-        // Update HorrorMovie 
 
-        [HttpPut]
-        [Route("updateHorrorMovie/{updatedHorrorMovieId}")]
+        //// Update HorrorMovie 
+
+        //[HttpPut]
+        //[Route("updateHorrorMovie/{updatedHorrorMovieId}")]
 
         // Delete HorrorMovie by ID 
 
         [HttpDelete]
         [Route("deleteHorrorMovies/{deletedHorrorMovieId}")]
-        */
+        public async Task<IActionResult> DeleteHorrorMovie(Guid deletedHorrorMovieId)
+        {
+            var result = await _mediator.Send(new DeleteHorrorMovieByIdCommand(deletedHorrorMovieId));
+            return result != null ? Ok($"Movie with ID '{deletedHorrorMovieId}' has been deleted.") : NotFound($"No Movie found with ID '{deletedHorrorMovieId}' for deletion.");
+        }
+
     }
 
 }
