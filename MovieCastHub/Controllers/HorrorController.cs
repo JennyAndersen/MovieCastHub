@@ -1,4 +1,4 @@
-﻿using Application.Dtos.Movie;
+using Application.Dtos.Movie;
 using Application.Movies.Commands.Horrors.AddHorrorMovie;
 using Application.Movies.Commands.Horrors.DeleteHorrorMovieById;
 using Application.Movies.Queries.Horrors.GetAllHorror;

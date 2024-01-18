@@ -1,5 +1,4 @@
-﻿using Application.Users.Commands.DeleteUser;
-using Application.Users.Querys.GetAllUsers;
+﻿using Application.Users.Querys.GetAllUsers;
 using Domain.Models;
 using FluentAssertions;
 using Infrastructure.Interfaces;

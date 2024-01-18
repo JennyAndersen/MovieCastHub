@@ -1,6 +1,5 @@
 ﻿using Domain.Models;
 using MediatR;
-using System.Collections.Generic;
 
 namespace Application.Movies.Queries.Horrors.GetHorrorMovieByDirector
 {

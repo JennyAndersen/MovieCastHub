@@ -1,12 +1,6 @@
-﻿using Application.Movies.Commands.Comedies.AddComedyMovie;
-using Domain.Models;
+﻿using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Movies.Commands.Horrors.AddHorrorMovie
 {
