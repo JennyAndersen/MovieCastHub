@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -19,7 +19,9 @@ namespace Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+
+            optionsBuilder.UseSqlServer("Server=SMARTFRIDGE; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+
         }
     }
 }
