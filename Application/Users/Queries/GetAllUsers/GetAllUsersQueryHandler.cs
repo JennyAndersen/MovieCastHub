@@ -15,7 +15,7 @@ namespace Application.Users.Querys.GetAllUsers
         public async Task<List<User>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
             var users = await _userRepository.GetAllUsersAsync();
-            return users.ToList();
+            return users?.ToList() ?? new List<User>();
         }
     }
 }

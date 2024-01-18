@@ -15,7 +15,7 @@ namespace Application.Movies.Queries.Comedies.GetAllComedy
 
         async Task<List<Comedy>> IRequestHandler<GetAllComedyMoviesQuery, List<Comedy>>.Handle(GetAllComedyMoviesQuery request, CancellationToken cancellationToken)
         {
-            List<Comedy> allComedyMovies = await _movieRepository.GetAllComedyMoviesQuery();
+            List<Comedy> allComedyMovies = await _movieRepository.GetAllComedyMoviesAsync();
             return allComedyMovies;
         }
     }

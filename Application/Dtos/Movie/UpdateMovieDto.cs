@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Users.Commands.CreateUser
+namespace Application.Dtos.Movie
 {
-    internal class CreateUserCommand
+    public class UpdateMovieDto
     {
+        public required float Rating { get; set; }
     }
 }
