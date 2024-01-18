@@ -1,6 +1,5 @@
 ﻿using Application.Dtos.Movie;
 using Application.Movies.Commands.Horrors.AddHorrorMovie;
-using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
 using Application.Movies.Queries.Horrors.GetAllHorror;
 using Application.Movies.Queries.Horrors.GetHorrorMovieByDirector;
 using MediatR;

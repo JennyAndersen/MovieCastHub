@@ -1,6 +1,7 @@
 ﻿using Application.Dtos.Movie;
 using Application.Movies.Commands.Comedies.AddComedyMovie;
 using Application.Movies.Commands.Comedies.DeleteComedyMovieById;
+using Application.Movies.Commands.Comedies.UpdateComedyMovieById;
 using Application.Movies.Queries.Comedies.GetAllComedy;
 using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
 using Application.Movies.Queries.Comedies.GetComedyMovieByTitle;
@@ -83,12 +84,13 @@ namespace API.Controllers
             }
         }
 
-        /*
-        // Update ComedyMovie 
-
         [HttpPut]
         [Route("updateComedyMovie/{updatedComedyMovieId}")]
-        */
+        public async Task<IActionResult> UpdateComedyMovie([FromBody] ComedyMovieDto updatedComedyMovie, Guid updatedComedyMovieId)
+        {
+            var result = await _mediator.Send(new UpdateComedyMovieByIdCommand(updatedComedyMovie, updatedComedyMovieId));
+            return result == null ? NotFound($"No bird found with ID '{updatedComedyMovieId}' for updating.") : Ok(updatedComedyMovie);
+        }
 
         [HttpDelete]
         [Route("deleteComedyMovie/{deletedComedyMovieId}")]

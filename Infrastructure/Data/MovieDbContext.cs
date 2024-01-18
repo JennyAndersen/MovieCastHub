@@ -23,7 +23,7 @@ namespace Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=MSI\\SQLEXPRESS; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("localhost\\MSSQLSERVER01;Database=MovieCastHubDb;Trusted_Connection=true;TrustServerCertificate=true;");
         }
     }
 }
