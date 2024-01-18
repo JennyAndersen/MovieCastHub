@@ -37,7 +37,7 @@ namespace Infrastructure.Repositories
             var documentaryMovies = await _context.Movies.OfType<Documentary>().ToListAsync();
             return documentaryMovies;
         }
-        
+
         public async Task<List<Horror>> GetAllHorrorsMoviesAsync()
         {
             var horrorMovies = await _context.Movies.OfType<Horror>().ToListAsync();
