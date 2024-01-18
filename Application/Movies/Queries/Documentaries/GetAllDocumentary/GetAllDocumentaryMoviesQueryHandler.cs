@@ -15,7 +15,7 @@ namespace Application.Movies.Queries.Documentaries.GetAllDocumentary
 
         async Task<List<Documentary>> IRequestHandler<GetAllDocumentaryMoviesQuery, List<Documentary>>.Handle(GetAllDocumentaryMoviesQuery request, CancellationToken cancellationToken)
         {
-            List<Documentary> allDocumentaryMovies = await _movieRepository.GetAllDocumentaryMoviesQuery();
+            List<Documentary> allDocumentaryMovies = await _movieRepository.GetAllDocumentaryMoviesAsync();
             return allDocumentaryMovies;
         }
     }
