@@ -86,7 +86,7 @@ namespace API.Controllers
 
         [HttpPut]
         [Route("updateComedyMovie/{updatedComedyMovieId}")]
-        public async Task<IActionResult> UpdateComedyMovie([FromBody] ComedyMovieDto updatedComedyMovie, Guid updatedComedyMovieId)
+        public async Task<IActionResult> UpdateComedyMovie([FromBody] UpdateMovieDto updatedComedyMovie, Guid updatedComedyMovieId)
         {
             var result = await _mediator.Send(new UpdateComedyMovieByIdCommand(updatedComedyMovie, updatedComedyMovieId));
             return result == null ? NotFound($"No bird found with ID '{updatedComedyMovieId}' for updating.") : Ok(updatedComedyMovie);

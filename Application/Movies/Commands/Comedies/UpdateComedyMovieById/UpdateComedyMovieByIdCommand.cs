@@ -6,13 +6,13 @@ namespace Application.Movies.Commands.Comedies.UpdateComedyMovieById
 {
     public class UpdateComedyMovieByIdCommand : IRequest<Comedy>
     {
-        public UpdateComedyMovieByIdCommand(ComedyMovieDto updatedComedyMovie, Guid id)
+        public UpdateComedyMovieByIdCommand(UpdateMovieDto updatedComedyMovie, Guid id)
         {
             UpdatedComedyMovie = updatedComedyMovie;
             Id = id;
         }
 
-        public ComedyMovieDto UpdatedComedyMovie { get; }
+        public UpdateMovieDto UpdatedComedyMovie { get; }
         public Guid Id { get; }
     }
 }

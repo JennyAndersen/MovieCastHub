@@ -5,10 +5,6 @@ namespace Infrastructure.Data
 {
     public class MovieDbContext : DbContext
     {
-        public MovieDbContext()
-        {
-
-        }
         public MovieDbContext(DbContextOptions options) : base(options)
         {
 
@@ -23,7 +19,7 @@ namespace Infrastructure.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("localhost\\MSSQLSERVER01;Database=MovieCastHubDb;Trusted_Connection=true;TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
         }
     }
 }
