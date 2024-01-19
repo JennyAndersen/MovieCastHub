@@ -1,11 +1,14 @@
+#nullable disable
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Data
 {
     public class MovieDbContext : DbContext
     {
-        public MovieDbContext(DbContextOptions options) : base(options)
+        public MovieDbContext(DbContextOptions<MovieDbContext> options)
+            : base(options)
         {
 
         }
@@ -17,11 +20,7 @@ namespace Infrastructure.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
 
-            optionsBuilder.UseSqlServer("Server=SMARTFRIDGE; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
-
-        }
     }
 }
+
