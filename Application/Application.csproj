@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Movies\Commands\Horrors\UpdateHorrorMovie\" />
     <Folder Include="Movies\Queries\Horrors\GetHorrorMovieByDirector\" />
   </ItemGroup>
 
