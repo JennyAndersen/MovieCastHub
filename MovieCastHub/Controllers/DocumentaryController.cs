@@ -1,6 +1,7 @@
 ﻿using Application.Dtos.Movie;
 using Application.Movies.Commands.Comedies.DeleteDocumentaryMovieById;
 using Application.Movies.Commands.Documentaries.AddDocumentaryMovie;
+using Application.Movies.Commands.Documentaries.DeleteDocumentaryMovieById;
 using Application.Movies.Commands.Documentaries.UpdateDocumentaryMovieById;
 using Application.Movies.Queries.Documentaries.GetAllDocumentary;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByDirector;

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Movies.Commands.Documentaries.UpdateDocumentaryMovieById
 {
-    internal class UpdateDocumentaryMovieByIdCommandHandler : IRequestHandler<UpdateDocumentaryMovieByIdCommand, Documentary>
+    public class UpdateDocumentaryMovieByIdCommandHandler : IRequestHandler<UpdateDocumentaryMovieByIdCommand, Documentary>
     {
         private readonly IMovieRepository _movieRepository;
 
