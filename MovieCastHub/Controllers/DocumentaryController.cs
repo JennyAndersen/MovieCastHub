@@ -1,4 +1,5 @@
 ﻿using Application.Movies.Queries.Documentaries.GetAllDocumentary;
+using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByDirector;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,36 @@ namespace API.Controllers
             {
                 var documentaryMovie = await _mediator.Send(new GetDocumentaryMovieByTitleQuery(title));
                 return documentaryMovie == null ? NotFound($"No movie found with title '{title}'.") : Ok(documentaryMovie);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
+        }
+
+        [HttpGet]
+        [Route("getDocumentaryMovieByDirector/{director}")]
+        public async Task<IActionResult> GetDocumentaryMovieByDirector(string director)
+        {
+            try
+            {
+                var documentaryMovie = await _mediator.Send(new GetDocumentaryMovieByDirectorQuery(director));
+                return documentaryMovie == null ? NotFound($"No movie found with title '{director}'.") : Ok(documentaryMovie);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
+        }
+
+        [HttpPost]
+        [Route("addNewDocumentaryMovie")]
+        public async Task<IActionResult> AddDocumentaryMovie([FromBody] DocumentaryMovieDto newDocumentaryMovie)
+        {
+            try
+            {
+                var result = await _mediator.Send(new AddDocumentaryMovieCommand(newDocumentaryMovie));
+                return result == null ? BadRequest("Could not add the Documentary moview.") : Ok(newDocumentaryMovie);
             }
             catch (Exception)
             {
