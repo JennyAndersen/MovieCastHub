@@ -8,6 +8,7 @@ using Test.TestHelpers;
 
 namespace Test.Application.Movies.Documentaries.QueryHandlers
 {
+    [TestFixture]
     public class GetDocumentaryMovieByTitleQueryHandlerTests
     {
         private GetDocumentaryMovieByTitleQueryHandler _handler;
