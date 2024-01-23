@@ -1,5 +1,7 @@
 ﻿using Application.Dtos.Movie;
+using Application.Movies.Commands.Comedies.DeleteDocumentaryMovieById;
 using Application.Movies.Commands.Documentaries.AddDocumentaryMovie;
+using Application.Movies.Commands.Documentaries.UpdateDocumentaryMovieById;
 using Application.Movies.Queries.Documentaries.GetAllDocumentary;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByDirector;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle;
@@ -77,6 +79,22 @@ namespace API.Controllers
             {
                 return StatusCode(500, "Internal Servor Error");
             }
+        }
+
+        [HttpPut]
+        [Route("updateDocumentaryMovie/{updatedDocumentaryMovieId}")]
+        public async Task<IActionResult> UpdateDocumentaryMovie([FromBody] UpdateMovieDto updatedDocumentaryMovie, Guid updatedDocumentaryMovieId)
+        {
+            var result = await _mediator.Send(new UpdateDocumentaryMovieByIdCommand(updatedDocumentaryMovie, updatedDocumentaryMovieId));
+            return result == null ? NotFound($"No bird found with ID '{updatedDocumentaryMovieId}' for updating.") : Ok(updatedDocumentaryMovie);
+        }
+
+        [HttpDelete]
+        [Route("deleteDocumentaryMovie/{deletedDocumentaryMovieId}")]
+        public async Task<IActionResult> DeleteDocumentaryMovie(Guid deletedDocumentaryMovieId)
+        {
+            var result = await _mediator.Send(new DeleteDocumentaryMovieByIdCommand(deletedDocumentaryMovieId));
+            return result != null ? Ok($"Movie with ID '{deletedDocumentaryMovieId}' has been deleted.") : NotFound($"No Movie found with ID '{deletedDocumentaryMovieId}' for deletion.");
         }
     }
 }

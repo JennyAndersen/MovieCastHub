@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Movies\Commands\Documentaries\DeleteDocumentaryMovieById\" />
     <Folder Include="Movies\Queries\Horrors\GetHorrorMovieByDirector\" />
   </ItemGroup>
 
