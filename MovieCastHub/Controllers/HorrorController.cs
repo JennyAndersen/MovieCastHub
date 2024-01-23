@@ -1,6 +1,7 @@
 using Application.Dtos.Movie;
 using Application.Movies.Commands.Horrors.AddHorrorMovie;
 using Application.Movies.Commands.Horrors.DeleteHorrorMovieById;
+using Application.Movies.Commands.Horrors.UpdateHorrorMovie;
 using Application.Movies.Queries.Horrors.GetAllHorror;
 using Application.Movies.Queries.Horrors.GetHorrorMovieByDirector;
 using Application.Movies.Queries.Horrors.GetHorrorMovieByTitle;
@@ -96,10 +97,13 @@ namespace API.Controllers
 
         //// Update HorrorMovie 
 
-        //[HttpPut]
-        //[Route("updateHorrorMovie/{updatedHorrorMovieId}")]
-
-        // Delete HorrorMovie by ID 
+        [HttpPut]
+        [Route("updateComedyMovie/{updatedComedyMovieId}")]
+        public async Task<IActionResult> UpdateComedyMovie([FromBody] UpdateMovieDto updatedHorrorMovie, Guid updatedHorrorMovieId)
+        {
+            var result = await _mediator.Send(new UpdateHorrorMovieByIdCommand(updatedHorrorMovie, updatedHorrorMovieId));
+            return result == null ? NotFound($"No bird found with ID '{updatedHorrorMovieId}' for updating.") : Ok(updatedHorrorMovie);
+        }
 
         [HttpDelete]
         [Route("deleteHorrorMovies/{deletedHorrorMovieId}")]
