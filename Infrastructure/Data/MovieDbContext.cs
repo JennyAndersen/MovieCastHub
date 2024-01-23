@@ -1,7 +1,6 @@
 #nullable disable
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Data
 {
