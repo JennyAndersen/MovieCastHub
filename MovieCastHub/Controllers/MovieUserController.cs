@@ -1,5 +1,6 @@
 ﻿using Application.Dtos.MovieUser;
 using Application.MovieUsers.Commands.AddMovieUser;
+using Application.MovieUsers.Commands.DeleteMovieUserById;
 using Application.MovieUsers.Queries.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -40,6 +41,26 @@ namespace API.Controllers
             {
                 var result = await _mediator.Send(new AddMovieUserCommand(newMovieUser));
                 return result == false ? BadRequest("Could not add the animaluser.") : Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
+        }
+
+        /*
+        [HttpPost]
+        [Route("updateMovieUser")]
+       */
+
+        [HttpDelete]
+        [Route("deleteMovieUser/{deletedUserMovieId}")]
+        public async Task<IActionResult> DeleteMovieUser(Guid deletedUserMovieId)
+        {
+            try
+            {
+                var result = await _mediator.Send(new DeleteMovieUserByIdCommand(deletedUserMovieId));
+                return result == false ? BadRequest("Invalid delete animal user command data.") : Ok(result);
             }
             catch (Exception)
             {
