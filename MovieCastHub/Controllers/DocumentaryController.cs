@@ -1,4 +1,6 @@
-﻿using Application.Movies.Queries.Documentaries.GetAllDocumentary;
+﻿using Application.Dtos.Movie;
+using Application.Movies.Commands.Documentaries.AddDocumentaryMovie;
+using Application.Movies.Queries.Documentaries.GetAllDocumentary;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByDirector;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle;
 using MediatR;
