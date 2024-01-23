@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Movies.Queries.Documentaries.GetAllDocumentary
 {
-    internal class GetAllDocumentaryMoviesQueryHandler : IRequestHandler<GetAllDocumentaryMoviesQuery, List<Documentary>>
+    public class GetAllDocumentaryMoviesQueryHandler : IRequestHandler<GetAllDocumentaryMoviesQuery, List<Documentary>>
     {
         private readonly IMovieRepository _movieRepository;
 
