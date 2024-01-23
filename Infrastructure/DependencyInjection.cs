@@ -12,14 +12,19 @@ namespace Infrastructure
         {
             services.AddDbContext<MovieDbContext>(options =>
             {
-                options.UseSqlServer("Server=MSI\\SQLEXPRESS; Database=MovieCastHubDb; Trusted_Connection=true; TrustServerCertificate=true;");
+                options.UseSqlServer("Server=LUCASDATOR\\SQLEXPRESS; Database=LucasDb; Trusted_Connection=true; TrustServerCertificate=true;");
 
             });
 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            using (var scope = services.BuildServiceProvider().CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<MovieDbContext>();
+                DataBaseSeedHelper.SeedData(dbContext);
+            }
             return services;
         }
+
     }
 }
