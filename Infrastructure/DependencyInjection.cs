@@ -16,6 +16,7 @@ namespace Infrastructure
 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMovieUserRepository, MovieUserRepository>();
 
             return services;
         }
