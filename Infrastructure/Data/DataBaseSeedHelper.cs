@@ -1,7 +1,4 @@
 ﻿using Domain.Models;
-using Infrastructure.Data;
-using System;
-using System.Linq;
 
 namespace Infrastructure.Data
 {
@@ -13,6 +10,13 @@ namespace Infrastructure.Data
         private static readonly List<string> Directors = new() { "Director1", "Director2", "Director3", "Director4", "Director5" };
 
         public static void SeedData(MovieDbContext dbContext)
+        {
+            SeedUsers(dbContext);
+            SeedMovies(dbContext);
+            SeedUserMovies(dbContext);
+        }
+
+        private static void SeedUsers(MovieDbContext dbContext)
         {
             if (!dbContext.Users.Any())
             {
@@ -27,7 +31,10 @@ namespace Infrastructure.Data
                 }
                 dbContext.SaveChanges();
             }
+        }
 
+        private static void SeedMovies(MovieDbContext dbContext)
+        {
             if (!dbContext.Movies.Any())
             {
                 for (int i = 0; i < 5; i++)
@@ -78,7 +85,10 @@ namespace Infrastructure.Data
                 }
                 dbContext.SaveChanges();
             }
+        }
 
+        private static void SeedUserMovies(MovieDbContext dbContext)
+        {
             if (!dbContext.UserMovie.Any())
             {
                 var users = dbContext.Users.ToList();
@@ -95,6 +105,5 @@ namespace Infrastructure.Data
                 dbContext.SaveChanges();
             }
         }
-
     }
 }

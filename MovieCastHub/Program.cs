@@ -1,7 +1,5 @@
 using Application;
 using Infrastructure;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {

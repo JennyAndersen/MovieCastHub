@@ -1,7 +1,6 @@
 #nullable disable
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Data
 {
@@ -10,7 +9,7 @@ namespace Infrastructure.Data
         public MovieDbContext(DbContextOptions<MovieDbContext> options)
             : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
         public virtual DbSet<Comedy> ComedyMovies { get; set; }
