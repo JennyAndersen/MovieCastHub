@@ -1,6 +1,7 @@
 ﻿using Application.Dtos.MovieUser;
 using Application.MovieUsers.Commands.AddMovieUser;
 using Application.MovieUsers.Commands.DeleteMovieUserById;
+using Application.MovieUsers.Commands.UpdateMovieUserByUserId;
 using Application.MovieUsers.Queries.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -48,10 +49,22 @@ namespace API.Controllers
             }
         }
 
-        /*
+
         [HttpPost]
-        [Route("updateMovieUser")]
-       */
+        [Route("updateMovieUser/{updatedUserMovieId}")]
+        public async Task<IActionResult> UpdateMovieUser(UpdateMovieUserByUserIdCommand command)
+        {
+            try
+            {
+                var result = await _mediator.Send(command);
+                return command == null ? BadRequest("Invalid update movieuser command data.") : Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
+        }
+
 
         [HttpDelete]
         [Route("deleteMovieUser/{deletedUserMovieId}")]

@@ -19,6 +19,7 @@ namespace Application.MovieUsers.Commands.AddMovieUser
             {
                 UserId = request.NewMovieUser.UserId,
                 MovieId = request.NewMovieUser.MovieId,
+                UserRating = request.NewMovieUser.UserRating
             };
 
             return await _repository.AddMovieUserAsync(movieUser);

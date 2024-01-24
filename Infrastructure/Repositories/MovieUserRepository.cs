@@ -33,5 +33,17 @@ namespace Infrastructure.Repositories
             var allMovieUsers = await _context.UserMovie.OfType<UserMovie>().ToListAsync();
             return allMovieUsers;
         }
+
+        public async Task<UserMovie> GetMovieUserByIdAsync(Guid userMovieId)
+        {
+            var userMovie = await _context.UserMovie.FindAsync(userMovieId);
+            return userMovie;
+        }
+
+        public async Task UpdateMovieUserAsync(UserMovie movieUser)
+        {
+            _context.UserMovie.Update(movieUser);
+            await _context.SaveChangesAsync();
+        }
     }
 }
