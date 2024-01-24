@@ -2,6 +2,7 @@
 using Application.Users.Commands.CreateUser;
 using Application.Users.Commands.DeleteUser;
 using Application.Users.Commands.UpdateUser;
+using Application.Users.Queries.UserLogin;
 using Application.Users.Querys.GetAllUsers;
 using Application.Users.Querys.GetUsersById;
 using MediatR;
@@ -18,6 +19,19 @@ namespace API.Controllers
         public UserController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] UserDto userDto)
+        {
+            var token = await _mediator.Send(new LoginQuery(userDto.Username, userDto.Password));
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return Unauthorized();
+            }
+
+            return Ok(new { Token = token });
         }
 
         [HttpGet("GetAllUsers")]
