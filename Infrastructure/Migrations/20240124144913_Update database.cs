@@ -5,11 +5,7 @@
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:Infrastructure/Migrations/20240124132718_Init Create.cs
-    public partial class InitCreate : Migration
-========
-    public partial class UpdatetheUserMoviemodel : Migration
->>>>>>>> development:Infrastructure/Migrations/20240124082628_Update the UserMovie model.cs
+    public partial class Updatedatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +53,7 @@ namespace Infrastructure.Migrations
                 {
                     UserMovieId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Rating = table.Column<float>(type: "real", nullable: false),
+                    UserRating = table.Column<float>(type: "real", nullable: false),
                     MovieId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
