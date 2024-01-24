@@ -13,7 +13,7 @@ namespace Application.Movies.Queries.Documentaries.GetAllDocumentary
             _movieRepository = movieRepository;
         }
 
-        async Task<List<Documentary>> IRequestHandler<GetAllDocumentaryMoviesQuery, List<Documentary>>.Handle(GetAllDocumentaryMoviesQuery request, CancellationToken cancellationToken)
+        public async Task<List<Documentary>> Handle(GetAllDocumentaryMoviesQuery request, CancellationToken cancellationToken)
         {
             List<Documentary> allDocumentaryMovies = await _movieRepository.GetAllDocumentaryMoviesAsync();
             return allDocumentaryMovies;
