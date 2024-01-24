@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+using Domain.Models;
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -21,15 +21,21 @@ namespace Infrastructure.Repositories
 
         public async Task DeleteAsync(Guid movieId)
         {
-            var comedyMovieToDelete = await _context.Movies.FindAsync(movieId) ?? throw new ArgumentNullException(nameof(movieId), "Cannot delete null movie.");
-            _context.Movies.Remove(comedyMovieToDelete);
+            var movieToDelete = await _context.Movies.FindAsync(movieId) ?? throw new ArgumentNullException(nameof(movieId), "Cannot delete null movie.");
+            _context.Movies.Remove(movieToDelete);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Comedy>> GetAllComedyMoviesQuery()
+        public async Task<List<Comedy>> GetAllComedyMoviesAsync()
         {
             var comedyMovies = await _context.Movies.OfType<Comedy>().ToListAsync();
             return comedyMovies;
+        }
+
+        public async Task<List<Documentary>> GetAllDocumentaryMoviesAsync()
+        {
+            var documentaryMovies = await _context.Movies.OfType<Documentary>().ToListAsync();
+            return documentaryMovies;
         }
 
         public async Task<List<Horror>> GetAllHorrorsMoviesAsync()
@@ -56,6 +62,12 @@ namespace Infrastructure.Repositories
             return await _context.Movies
         .Where(m => m.Title == title)
         .ToListAsync();
+        }
+
+        public async Task UpdateByIdAsync(Movie movieToUpdate)
+        {
+            _context.Movies.Update(movieToUpdate ?? throw new ArgumentNullException(nameof(movieToUpdate), "Cannot update null animal."));
+            await _context.SaveChangesAsync();
         }
     }
 }
