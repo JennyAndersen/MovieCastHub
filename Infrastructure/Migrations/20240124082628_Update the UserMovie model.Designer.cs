@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20240124132718_Init Create")]
-    partial class InitCreate
+    [Migration("20240124082628_Update the UserMovie model")]
+    partial class UpdatetheUserMoviemodel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,6 +81,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("MovieId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("Rating")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");

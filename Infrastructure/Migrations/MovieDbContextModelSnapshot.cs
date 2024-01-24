@@ -82,6 +82,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<float>("UserRating")
+                        .HasColumnType("real");
+
                     b.HasKey("UserMovieId");
 
                     b.HasIndex("MovieId");
