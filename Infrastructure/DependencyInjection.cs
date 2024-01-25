@@ -18,7 +18,14 @@ namespace Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMovieUserRepository, MovieUserRepository>();
 
+            using (var scope = services.BuildServiceProvider().CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<MovieDbContext>();
+                DataBaseSeedHelper.SeedData(dbContext);
+            }
+
             return services;
         }
+
     }
 }

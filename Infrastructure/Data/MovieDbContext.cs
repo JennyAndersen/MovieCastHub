@@ -9,7 +9,7 @@ namespace Infrastructure.Data
         public MovieDbContext(DbContextOptions<MovieDbContext> options)
             : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
         public virtual DbSet<Comedy> ComedyMovies { get; set; }
