@@ -16,6 +16,7 @@ namespace Infrastructure
 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
             services.AddScoped<IMovieUserRepository, MovieUserRepository>();
 
             using (var scope = services.BuildServiceProvider().CreateScope())
