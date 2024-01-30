@@ -14,7 +14,7 @@ namespace Infrastructure.Repositories
         public MovieRepository(MovieDbContext context)
         {
             _context = context;
-            _logger = Log.ForContext<UserRepository>();
+            _logger = Log.ForContext<MovieRepository>();
         }
 
         public async Task AddMovieAsync<T>(T entity) where T : class
