@@ -5,6 +5,8 @@ using Application.Movies.Commands.Comedies.UpdateComedyMovieById;
 using Application.Movies.Queries.Comedies.GetAllComedy;
 using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
 using Application.Movies.Queries.Comedies.GetComedyMovieByTitle;
+using AutoMapper;
+using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +18,12 @@ namespace API.Controllers
     {
 
         internal readonly IMediator _mediator;
+        internal readonly IMapper _mapper;
 
-        public ComedyController(IMediator mediator)
+        public ComedyController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -76,11 +80,11 @@ namespace API.Controllers
             try
             {
                 var result = await _mediator.Send(new AddComedyMovieCommand(newComedyMovie));
-                return result == null ? BadRequest("Could not add the comedy moview.") : Ok(newComedyMovie);
+                return result == null ? BadRequest("Could not add the comedy movie.") : Ok(newComedyMovie);
             }
             catch (Exception)
             {
-                return StatusCode(500, "Internal Servor Error");
+                return StatusCode(500, "Internal Server Error");
             }
         }
 

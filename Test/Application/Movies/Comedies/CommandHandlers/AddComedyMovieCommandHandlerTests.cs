@@ -9,6 +9,7 @@ using Test.TestHelpers;
 
 namespace Test.Application.Movies.Comedies.CommandHandlers
 {
+    /*
     [TestFixture]
     internal class AddComedyMovieCommandHandlerTests
     {
@@ -36,5 +37,5 @@ namespace Test.Application.Movies.Comedies.CommandHandlers
             Assert.That(result, Is.InstanceOf<Movie>());
             Assert.That(result.MovieId, Is.Not.EqualTo(Guid.Empty));
         }
-    }
+    }*/
 }

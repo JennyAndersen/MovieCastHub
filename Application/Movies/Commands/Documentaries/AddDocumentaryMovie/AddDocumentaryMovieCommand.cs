@@ -1,15 +1,28 @@
-﻿using Application.Dtos.Movie;
+﻿using Application.Behavior;
+using Application.Dtos.Movie;
 using Domain.Models;
+using FluentValidation;
 using MediatR;
 
 namespace Application.Movies.Commands.Documentaries.AddDocumentaryMovie
 {
-    public class AddDocumentaryMovieCommand : IRequest<Documentary>
+    public class AddDocumentaryMovieCommand : IRequest<Documentary>, IValidate
     {
         public AddDocumentaryMovieCommand(DocumentaryMovieDto newDocumentaryMovie)
         {
             NewDocumentaryMovie = newDocumentaryMovie;
         }
         public DocumentaryMovieDto NewDocumentaryMovie { get; set; }
+
+        public void Validate()
+        {
+            var validator = new DocumentaryMovieDtoValidator();
+            var validationResult = validator.Validate(NewDocumentaryMovie);
+
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
+            }
+        }
     }
 }
