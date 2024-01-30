@@ -64,4 +64,21 @@ namespace Application.Behavior
                 .MaximumLength(100).WithMessage("RealLifeContext cannot exceed 100 characters.");
         }
     }
+
+    public class HorrorMovieDtoValidator : MovieValidator<HorrorMovieDto>
+    {
+        protected override void ConfigureAdditionalRules()
+        {
+            RuleFor(dto => dto.ScaryLevel)
+           .GreaterThanOrEqualTo(0).WithMessage("ScaryLevel must be greater than or equal to 0.")
+           .LessThanOrEqualTo(10).WithMessage("ScaryLevel must be less than or equal to 10.");
+
+            RuleFor(dto => dto.SupernaturalElements)
+                .NotEmpty().WithMessage("SupernaturalElements is required.");
+
+            RuleFor(dto => dto.GoreLevel)
+                .GreaterThanOrEqualTo(0).WithMessage("GoreLevel must be greater than or equal to 0.")
+                .LessThanOrEqualTo(10).WithMessage("GoreLevel must be less than or equal to 10.");
+        }
+    }
 }
