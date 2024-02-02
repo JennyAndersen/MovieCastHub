@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Application.Behavior
+namespace Application.Behavior.Validators
 {
     public class GuidValidator : AbstractValidator<Guid>
     {

@@ -1,4 +1,5 @@
 ﻿using Application.Behavior;
+using Application.Behavior.Validators;
 using Application.Dtos.Movie;
 using Domain.Models;
 using MediatR;
@@ -22,6 +23,4 @@ namespace Application.Movies.Commands.Horrors.UpdateHorrorMovie
             ValidationHelper.ValidateAndThrow(Id, new GuidValidator());
         }
     }
-
-
 }

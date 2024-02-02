@@ -1,9 +1,11 @@
-﻿using Application.Dtos.MovieUser;
+﻿using Application.Behavior;
+using Application.Behavior.Validators;
+using Application.Dtos.MovieUser;
 using MediatR;
 
 namespace Application.MovieUsers.Commands.AddMovieUser
 {
-    public class AddMovieUserCommand : IRequest<bool>
+    public class AddMovieUserCommand : IRequest<bool>, IValidate
     {
         public AddMovieUserCommand(MovieUserDto newMovieUser)
         {
@@ -11,5 +13,10 @@ namespace Application.MovieUsers.Commands.AddMovieUser
         }
 
         public MovieUserDto NewMovieUser { get; }
+
+        public void Validate()
+        {
+            ValidationHelper.ValidateAndThrow(NewMovieUser, new MovieUserValidator());
+        }
     }
 }

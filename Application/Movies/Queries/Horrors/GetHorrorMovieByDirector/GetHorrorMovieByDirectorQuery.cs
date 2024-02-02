@@ -1,4 +1,5 @@
 ﻿using Application.Behavior;
+using Application.Behavior.Validators;
 using Domain.Models;
 using FluentValidation;
 using MediatR;

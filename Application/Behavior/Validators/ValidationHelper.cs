@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Behavior
+namespace Application.Behavior.Validators
 {
     public static class ValidationHelper
     {

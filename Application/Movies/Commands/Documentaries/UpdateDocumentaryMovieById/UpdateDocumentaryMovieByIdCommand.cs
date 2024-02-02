@@ -1,4 +1,5 @@
 ﻿using Application.Behavior;
+using Application.Behavior.Validators;
 using Application.Dtos.Movie;
 using Domain.Models;
 using MediatR;

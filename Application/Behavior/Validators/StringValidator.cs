@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Behavior
+namespace Application.Behavior.Validators
 {
     public class StringValidator : AbstractValidator<string>
     {
-        public StringValidator() 
+        public StringValidator()
         {
             RuleFor(value => value)
                 .NotEmpty().WithMessage("is required.")
