@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Behavior.Validators
+namespace Application.Behavior.Validators.Common
 {
     public class StringValidator : AbstractValidator<string>
     {

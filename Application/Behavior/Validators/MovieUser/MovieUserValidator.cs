@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Behavior.Validators
+namespace Application.Behavior.Validators.MovieUser
 {
     public class MovieUserValidator : AbstractValidator<MovieUserDto>
     {
@@ -14,7 +14,6 @@ namespace Application.Behavior.Validators
         {
             RuleFor(guid => guid).NotNull().WithMessage("Guid cant be NULL")
                 .NotEmpty().WithMessage("Guid cant be empty");
-
             RuleFor(value => value).NotEmpty().WithMessage("Input is required.");
         }
     }

@@ -2,7 +2,7 @@
 using Domain.Models;
 using FluentValidation;
 
-namespace Application.Behavior.Validators
+namespace Application.Behavior.Validators.Movie
 {
     public abstract class MovieValidator<TDto> : AbstractValidator<TDto>
         where TDto : MovieDto
