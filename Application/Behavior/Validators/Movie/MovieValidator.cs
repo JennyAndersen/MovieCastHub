@@ -1,5 +1,4 @@
 ﻿using Application.Dtos.Movie;
-using Domain.Models;
 using FluentValidation;
 
 namespace Application.Behavior.Validators.Movie

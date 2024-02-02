@@ -11,7 +11,7 @@ namespace Application
         {
             var assembly = typeof(DependencyInjection).Assembly;
             services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(assembly));
-            
+
             AssemblyScanner.FindValidatorsInAssembly(assembly)
 .Select(result => new ServiceDescriptor(result.InterfaceType, result.ValidatorType, ServiceLifetime.Transient))
 .ToList()
@@ -19,7 +19,7 @@ namespace Application
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-            return services; 
+            return services;
         }
     }
 }

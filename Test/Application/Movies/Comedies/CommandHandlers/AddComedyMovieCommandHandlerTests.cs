@@ -1,13 +1,4 @@
-﻿using Application.Dtos.Movie;
-using Application.Movies.Commands.Comedies.AddComedyMovie;
-using AutoFixture.NUnit3;
-using Domain.Models;
-using Infrastructure.Interfaces;
-using Moq;
-using NUnit.Framework;
-using Test.TestHelpers;
-
-namespace Test.Application.Movies.Comedies.CommandHandlers
+﻿namespace Test.Application.Movies.Comedies.CommandHandlers
 {
     /*
     [TestFixture]

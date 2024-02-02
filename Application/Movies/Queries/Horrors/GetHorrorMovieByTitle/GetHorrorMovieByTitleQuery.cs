@@ -1,9 +1,7 @@
 ﻿using Application.Behavior;
 using Application.Behavior.Validators;
 using Domain.Models;
-using FluentValidation;
 using MediatR;
-using System.IO;
 
 namespace Application.Movies.Queries.Horrors.GetHorrorMovieByTitle
 {

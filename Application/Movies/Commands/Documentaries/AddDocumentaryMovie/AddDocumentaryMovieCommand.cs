@@ -2,7 +2,6 @@
 using Application.Behavior.Validators;
 using Application.Dtos.Movie;
 using Domain.Models;
-using FluentValidation;
 using MediatR;
 
 namespace Application.Movies.Commands.Documentaries.AddDocumentaryMovie

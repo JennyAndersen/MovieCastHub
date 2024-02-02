@@ -1,6 +1,5 @@
 ﻿using Application.Behavior;
 using Application.Behavior.Validators;
-using FluentValidation;
 using MediatR;
 
 namespace Application.Movies.Commands.Horrors.DeleteHorrorMovieById

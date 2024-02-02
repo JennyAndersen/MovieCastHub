@@ -2,9 +2,7 @@
 using Application.Behavior.Validators;
 using Application.Dtos.Movie;
 using Domain.Models;
-using FluentValidation;
 using MediatR;
-using System.IO;
 
 namespace Application.Movies.Commands.Comedies.AddComedyMovie
 {

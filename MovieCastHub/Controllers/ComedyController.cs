@@ -6,7 +6,6 @@ using Application.Movies.Queries.Comedies.GetAllComedy;
 using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
 using Application.Movies.Queries.Comedies.GetComedyMovieByTitle;
 using AutoMapper;
-using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

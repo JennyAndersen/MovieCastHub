@@ -1,6 +1,5 @@
 ﻿using Application.Behavior;
 using Application.Behavior.Validators;
-using Domain.Models;
 using MediatR;
 
 namespace Application.MovieUsers.Commands.UpdateMovieUserByUserId
