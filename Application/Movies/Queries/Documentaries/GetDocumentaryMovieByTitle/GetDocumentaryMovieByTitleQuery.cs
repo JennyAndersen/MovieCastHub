@@ -1,9 +1,12 @@
-﻿using Domain.Models;
+﻿using Application.Behavior;
+using Domain.Models;
+using FluentValidation;
 using MediatR;
+using System.IO;
 
 namespace Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle
 {
-    public class GetDocumentaryMovieByTitleQuery : IRequest<List<Movie>>
+    public class GetDocumentaryMovieByTitleQuery : IRequest<List<Movie>>, IValidate
     {
         public GetDocumentaryMovieByTitleQuery(string title)
         {
@@ -11,5 +14,10 @@ namespace Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle
         }
 
         public string Title { get; }
+
+        public void Validate()
+        {
+            ValidationHelper.ValidateAndThrow(Title, new StringValidator());
+        }
     }
 }

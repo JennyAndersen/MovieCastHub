@@ -1,9 +1,9 @@
 ﻿using Application.Behavior;
 using Application.Dtos.Movie;
-using AutoMapper;
 using Domain.Models;
 using FluentValidation;
 using MediatR;
+using System.IO;
 
 namespace Application.Movies.Commands.Comedies.AddComedyMovie
 {
@@ -18,13 +18,7 @@ namespace Application.Movies.Commands.Comedies.AddComedyMovie
 
         public void Validate()
         {
-            var validator = new ComedyMovieDtoValidator();
-            var validationResult = validator.Validate(NewComedyMovie);
-
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
-            }
+            ValidationHelper.ValidateAndThrow(NewComedyMovie, new ComedyMovieDtoValidator());
         }
     }
 }

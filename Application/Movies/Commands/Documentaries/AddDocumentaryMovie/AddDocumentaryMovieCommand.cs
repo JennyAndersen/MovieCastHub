@@ -16,13 +16,7 @@ namespace Application.Movies.Commands.Documentaries.AddDocumentaryMovie
 
         public void Validate()
         {
-            var validator = new DocumentaryMovieDtoValidator();
-            var validationResult = validator.Validate(NewDocumentaryMovie);
-
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
-            }
+            ValidationHelper.ValidateAndThrow(NewDocumentaryMovie, new DocumentaryMovieDtoValidator());
         }
     }
 }

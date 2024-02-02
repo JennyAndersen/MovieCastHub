@@ -16,13 +16,7 @@ namespace Application.Movies.Commands.Horrors.AddHorrorMovie
 
         public void Validate()
         {
-            var validator = new HorrorMovieDtoValidator();
-            var validationResult = validator.Validate(NewHorrorMovie);
-
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
-            }
+            ValidationHelper.ValidateAndThrow(NewHorrorMovie, new HorrorMovieDtoValidator());
         }
     }
 }

@@ -10,8 +10,6 @@ namespace Application.Behavior
         protected MovieValidator()
         {
             CommonRules();
-
-            // Additional rules specific to each genre
             ConfigureAdditionalRules();
         }
 

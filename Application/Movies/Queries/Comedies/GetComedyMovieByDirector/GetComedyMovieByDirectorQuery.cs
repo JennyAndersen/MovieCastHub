@@ -1,9 +1,11 @@
-﻿using Domain.Models;
+﻿using Application.Behavior;
+using Domain.Models;
+using FluentValidation;
 using MediatR;
 
 namespace Application.Movies.Queries.Comedies.GetComedyMovieByDirector
 {
-    public class GetComedyMovieByDirectorQuery : IRequest<List<Movie>>
+    public class GetComedyMovieByDirectorQuery : IRequest<List<Movie>>, IValidate
     {
         public GetComedyMovieByDirectorQuery(string director)
         {
@@ -11,5 +13,10 @@ namespace Application.Movies.Queries.Comedies.GetComedyMovieByDirector
         }
 
         public string Director { get; }
+
+        public void Validate()
+        {
+            ValidationHelper.ValidateAndThrow(Director, new StringValidator());
+        }
     }
 }

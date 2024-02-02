@@ -1,9 +1,11 @@
-﻿using Domain.Models;
+﻿using Application.Behavior;
+using Domain.Models;
+using FluentValidation;
 using MediatR;
 
 namespace Application.Movies.Queries.Horrors.GetHorrorMovieByDirector
 {
-    public class GetHorrorMovieByDirectorQuery : IRequest<List<Movie>>
+    public class GetHorrorMovieByDirectorQuery : IRequest<List<Movie>>, IValidate
     {
         public GetHorrorMovieByDirectorQuery(string director)
         {
@@ -11,5 +13,10 @@ namespace Application.Movies.Queries.Horrors.GetHorrorMovieByDirector
         }
 
         public string Director { get; }
+
+        public void Validate()
+        {
+            ValidationHelper.ValidateAndThrow(Director, new StringValidator());
+        }
     }
 }
