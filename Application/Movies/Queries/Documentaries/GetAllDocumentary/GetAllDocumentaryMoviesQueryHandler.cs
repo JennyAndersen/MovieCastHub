@@ -20,7 +20,7 @@ namespace Application.Movies.Queries.Documentaries.GetAllDocumentary
             List<Documentary> allDocumentaryMovies = await _movieRepository.GetAllDocumentaryMoviesAsync();
             if (allDocumentaryMovies.IsNullOrEmpty())
             {
-                throw new EntityNotFoundException("documentary");
+                throw new EntityNotFoundException("Documentary");
             }
             return allDocumentaryMovies;
         }

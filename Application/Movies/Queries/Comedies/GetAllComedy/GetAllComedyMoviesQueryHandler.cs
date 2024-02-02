@@ -20,7 +20,7 @@ namespace Application.Movies.Queries.Comedies.GetAllComedy
             List<Comedy> allComedyMovies = await _movieRepository.GetAllComedyMoviesAsync();
             if (allComedyMovies.IsNullOrEmpty())
             {
-                throw new EntityNotFoundException("comedy");
+                throw new EntityNotFoundException("Comedy");
             }
             return allComedyMovies;
         }

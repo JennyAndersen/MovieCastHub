@@ -23,7 +23,7 @@ namespace Application.Movies.Queries.Comedies.GetComedyMovieByDirector
             .ToList();
             if (comedyMovies.IsNullOrEmpty())
             {
-                throw new EntityNotFoundException("comedy", "director", request.Director);
+                throw new EntityNotFoundException("Comedy", "Director", request.Director);
             }
 
             return comedyMovies;
