@@ -1,4 +1,5 @@
 using Application.Dtos.Movie;
+using Application.Exceptions;
 using Application.Movies.Commands.Horrors.AddHorrorMovie;
 using Application.Movies.Commands.Horrors.DeleteHorrorMovieById;
 using Application.Movies.Commands.Horrors.UpdateHorrorMovie;
@@ -32,7 +33,11 @@ namespace API.Controllers
             try
             {
                 var horrorMovies = await _mediator.Send(new GetAllHorrorMoviesQuery());
-                return horrorMovies == null ? NotFound("No horror movies found.") : Ok(horrorMovies);
+                return Ok(horrorMovies);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
@@ -50,7 +55,11 @@ namespace API.Controllers
             try
             {
                 var horrorMovie = await _mediator.Send(new GetHorrorMovieByTitleQuery(title));
-                return horrorMovie == null ? NotFound($"No movie found with title '{title}'.") : Ok(horrorMovie);
+                return Ok(horrorMovie);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
@@ -66,16 +75,17 @@ namespace API.Controllers
             try
             {
                 var horrorMovie = await _mediator.Send(new GetHorrorMovieByDirectorQuery(director));
-                return horrorMovie == null ? NotFound($"No movies found with  '{director}'.") : Ok(horrorMovie);
+                return Ok(horrorMovie);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
                 return StatusCode(500, "Internal Servor Error");
             }
         }
-
-
-
 
         // Add new HorroMovie 
 
@@ -98,21 +108,41 @@ namespace API.Controllers
         //// Update HorrorMovie 
 
         [HttpPut]
-        [Route("updateComedyMovie/{updatedComedyMovieId}")]
-        public async Task<IActionResult> UpdateComedyMovie([FromBody] UpdateMovieDto updatedHorrorMovie, Guid updatedHorrorMovieId)
+        [Route("updateHorrorMovie/{updatedHorrorMovieId}")]
+        public async Task<IActionResult> UpdateHorrorMovie([FromBody] UpdateMovieDto updatedHorrorMovie, Guid updatedHorrorMovieId)
         {
-            var result = await _mediator.Send(new UpdateHorrorMovieByIdCommand(updatedHorrorMovie, updatedHorrorMovieId));
-            return result == null ? NotFound($"No bird found with ID '{updatedHorrorMovieId}' for updating.") : Ok(updatedHorrorMovie);
+            try
+            {
+                var result = await _mediator.Send(new UpdateHorrorMovieByIdCommand(updatedHorrorMovie, updatedHorrorMovieId));
+                return Ok(updatedHorrorMovie);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
         }
 
         [HttpDelete]
         [Route("deleteHorrorMovies/{deletedHorrorMovieId}")]
         public async Task<IActionResult> DeleteHorrorMovie(Guid deletedHorrorMovieId)
         {
-            var result = await _mediator.Send(new DeleteHorrorMovieByIdCommand(deletedHorrorMovieId));
-            return result != null ? Ok($"Movie with ID '{deletedHorrorMovieId}' has been deleted.") : NotFound($"No Movie found with ID '{deletedHorrorMovieId}' for deletion.");
+            try
+            {
+                var result = await _mediator.Send(new DeleteHorrorMovieByIdCommand(deletedHorrorMovieId));
+                return Ok($"Movie with ID '{deletedHorrorMovieId}' has been deleted.");
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
         }
-
     }
-
 }

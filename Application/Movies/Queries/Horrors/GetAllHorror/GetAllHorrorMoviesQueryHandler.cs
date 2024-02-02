@@ -1,6 +1,8 @@
-﻿using Domain.Models;
+﻿using Application.Exceptions;
+using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Movies.Queries.Horrors.GetAllHorror
 {
@@ -16,6 +18,10 @@ namespace Application.Movies.Queries.Horrors.GetAllHorror
         public async Task<List<Horror>> Handle(GetAllHorrorMoviesQuery request, CancellationToken cancellationToken)
         {
             List<Horror> allHorrorMovies = await _movieRepository.GetAllHorrorsMoviesAsync();
+            if (allHorrorMovies.IsNullOrEmpty())
+            {
+                throw new EntityNotFoundException("Horror");
+            }
             return allHorrorMovies;
         }
     }

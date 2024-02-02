@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Application.Exceptions;
+using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
 
@@ -16,7 +17,7 @@ namespace Application.Movies.Commands.Horrors.UpdateHorrorMovie
         public async Task<Horror> Handle(UpdateHorrorMovieByIdCommand request, CancellationToken cancellationToken)
         {
             var movieToUpdate = await _movieRepository.GetByIdAsync(request.Id) as Horror
-       ?? throw new Exception($"Movie with ID {request.Id} not found.");
+                ?? throw new EntityNotFoundException("Horror", request.Id);
 
             movieToUpdate.Rating = request.UpdatedHorrorMovie.Rating;
 
