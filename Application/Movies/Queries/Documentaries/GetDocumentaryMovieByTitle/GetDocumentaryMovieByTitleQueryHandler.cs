@@ -1,6 +1,8 @@
-﻿using Domain.Models;
+﻿using Application.Exceptions;
+using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle
 {
@@ -19,6 +21,10 @@ namespace Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle
             var documentaryMovies = movies
             .Where(m => m.GetType() == typeof(Documentary))
             .ToList();
+            if (documentaryMovies.IsNullOrEmpty())
+            {
+                throw new EntityNotFoundException("documentary", "title", request.Title);
+            }
 
             return documentaryMovies;
         }

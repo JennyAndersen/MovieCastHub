@@ -1,4 +1,5 @@
 ﻿using Application.Dtos.Movie;
+using Application.Exceptions;
 using Application.Movies.Commands.Documentaries.AddDocumentaryMovie;
 using Application.Movies.Commands.Documentaries.DeleteDocumentaryMovieById;
 using Application.Movies.Commands.Documentaries.UpdateDocumentaryMovieById;
@@ -45,6 +46,10 @@ namespace API.Controllers
                 var documentaryMovie = await _mediator.Send(new GetDocumentaryMovieByTitleQuery(title));
                 return documentaryMovie == null ? NotFound($"No movie found with title '{title}'.") : Ok(documentaryMovie);
             }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
             catch (Exception)
             {
                 return StatusCode(500, "Internal Servor Error");
@@ -58,7 +63,11 @@ namespace API.Controllers
             try
             {
                 var documentaryMovie = await _mediator.Send(new GetDocumentaryMovieByDirectorQuery(director));
-                return documentaryMovie == null ? NotFound($"No movie found with title '{director}'.") : Ok(documentaryMovie);
+                return Ok(documentaryMovie);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
@@ -85,16 +94,38 @@ namespace API.Controllers
         [Route("updateDocumentaryMovie/{updatedDocumentaryMovieId}")]
         public async Task<IActionResult> UpdateDocumentaryMovie([FromBody] UpdateMovieDto updatedDocumentaryMovie, Guid updatedDocumentaryMovieId)
         {
-            var result = await _mediator.Send(new UpdateDocumentaryMovieByIdCommand(updatedDocumentaryMovie, updatedDocumentaryMovieId));
-            return result == null ? NotFound($"No bird found with ID '{updatedDocumentaryMovieId}' for updating.") : Ok(updatedDocumentaryMovie);
+            try
+            {
+                var result = await _mediator.Send(new UpdateDocumentaryMovieByIdCommand(updatedDocumentaryMovie, updatedDocumentaryMovieId));
+                return Ok(updatedDocumentaryMovie);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
         }
 
         [HttpDelete]
         [Route("deleteDocumentaryMovie/{deletedDocumentaryMovieId}")]
         public async Task<IActionResult> DeleteDocumentaryMovie(Guid deletedDocumentaryMovieId)
         {
-            var result = await _mediator.Send(new DeleteDocumentaryMovieByIdCommand(deletedDocumentaryMovieId));
-            return result != null ? Ok($"Movie with ID '{deletedDocumentaryMovieId}' has been deleted.") : NotFound($"No Movie found with ID '{deletedDocumentaryMovieId}' for deletion.");
+            try
+            {
+                var result = await _mediator.Send(new DeleteDocumentaryMovieByIdCommand(deletedDocumentaryMovieId));
+                return Ok($"Movie with ID '{deletedDocumentaryMovieId}' has been deleted.");
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
         }
     }
 }

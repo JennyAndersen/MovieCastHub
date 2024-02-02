@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Application.Exceptions;
+using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
 
@@ -15,8 +16,7 @@ namespace Application.Movies.Commands.Documentaries.UpdateDocumentaryMovieById
 
         public async Task<Documentary> Handle(UpdateDocumentaryMovieByIdCommand request, CancellationToken cancellationToken)
         {
-            var movieToUpdate = await _movieRepository.GetByIdAsync(request.Id) as Documentary
-       ?? throw new Exception($"Movie with ID {request.Id} not found.");
+            var movieToUpdate = await _movieRepository.GetByIdAsync(request.Id) as Documentary ?? throw new EntityNotFoundException("Documentary", request.Id);
 
             movieToUpdate.Rating = request.UpdatedDocumentaryMovie.Rating;
 
