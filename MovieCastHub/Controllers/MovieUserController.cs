@@ -1,4 +1,5 @@
 ﻿using Application.Dtos.MovieUser;
+using Application.Exceptions;
 using Application.MovieUsers.Commands.AddMovieUser;
 using Application.MovieUsers.Commands.DeleteMovieUserById;
 using Application.MovieUsers.Commands.UpdateMovieUserByUserId;
@@ -26,7 +27,11 @@ namespace API.Controllers
             try
             {
                 var allMovieUsers = await _mediator.Send(new GetAllMovieUsersQuery());
-                return allMovieUsers == null ? NotFound("No MovieUsers found.") : Ok(allMovieUsers);
+                return Ok(allMovieUsers);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
@@ -49,7 +54,6 @@ namespace API.Controllers
             }
         }
 
-
         [HttpPost]
         [Route("updateMovieUser/{updatedUserMovieId}")]
         public async Task<IActionResult> UpdateMovieUser(UpdateMovieUserByUserIdCommand command)
@@ -59,12 +63,15 @@ namespace API.Controllers
                 var result = await _mediator.Send(command);
                 return command == null ? BadRequest("Invalid update movieuser command data.") : Ok(result);
             }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
             catch (Exception)
             {
                 return StatusCode(500, "Internal Servor Error");
             }
         }
-
 
         [HttpDelete]
         [Route("deleteMovieUser/{deletedUserMovieId}")]
@@ -74,6 +81,10 @@ namespace API.Controllers
             {
                 var result = await _mediator.Send(new DeleteMovieUserByIdCommand(deletedUserMovieId));
                 return result == false ? BadRequest("Invalid delete animal user command data.") : Ok(result);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
