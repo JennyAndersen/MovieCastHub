@@ -1,5 +1,6 @@
 ﻿using Application.Behavior;
 using Application.Behavior.Validators;
+using Application.Behavior.Validators.MovieUser;
 using Application.Dtos.MovieUser;
 using MediatR;
 

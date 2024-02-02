@@ -5,7 +5,6 @@ using Application.Movies.Commands.Comedies.UpdateComedyMovieById;
 using Application.Movies.Queries.Comedies.GetAllComedy;
 using Application.Movies.Queries.Comedies.GetComedyMovieByDirector;
 using Application.Movies.Queries.Comedies.GetComedyMovieByTitle;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,12 +16,10 @@ namespace API.Controllers
     {
 
         internal readonly IMediator _mediator;
-        internal readonly IMapper _mapper;
 
-        public ComedyController(IMediator mediator, IMapper mapper)
+        public ComedyController(IMediator mediator)
         {
             _mediator = mediator;
-            _mapper = mapper;
         }
 
         [HttpGet]

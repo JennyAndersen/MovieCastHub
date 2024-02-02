@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using Application.Behavior;
 using Application.Behavior.Validators;
+using Application.Behavior.Validators.User;
 using Application.Dtos.User;
 using Domain.Models;
 using MediatR;
