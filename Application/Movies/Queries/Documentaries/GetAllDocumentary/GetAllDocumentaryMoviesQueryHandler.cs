@@ -1,6 +1,8 @@
-﻿using Domain.Models;
+﻿using Application.Exceptions;
+using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Movies.Queries.Documentaries.GetAllDocumentary
 {
@@ -16,6 +18,10 @@ namespace Application.Movies.Queries.Documentaries.GetAllDocumentary
         public async Task<List<Documentary>> Handle(GetAllDocumentaryMoviesQuery request, CancellationToken cancellationToken)
         {
             List<Documentary> allDocumentaryMovies = await _movieRepository.GetAllDocumentaryMoviesAsync();
+            if (allDocumentaryMovies.IsNullOrEmpty())
+            {
+                throw new EntityNotFoundException("documentary movies");
+            }
             return allDocumentaryMovies;
         }
     }

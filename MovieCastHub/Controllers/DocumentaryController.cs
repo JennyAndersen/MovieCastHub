@@ -29,7 +29,11 @@ namespace API.Controllers
             try
             {
                 var documentaryMovies = await _mediator.Send(new GetAllDocumentaryMoviesQuery());
-                return documentaryMovies == null ? NotFound("No Documentary movies found.") : Ok(documentaryMovies);
+                return Ok(documentaryMovies);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
