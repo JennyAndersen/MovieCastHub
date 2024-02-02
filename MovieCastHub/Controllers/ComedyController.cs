@@ -76,11 +76,11 @@ namespace API.Controllers
             try
             {
                 var result = await _mediator.Send(new AddComedyMovieCommand(newComedyMovie));
-                return result == null ? BadRequest("Could not add the comedy moview.") : Ok(newComedyMovie);
+                return result == null ? BadRequest("Could not add the comedy movie.") : Ok(newComedyMovie);
             }
             catch (Exception)
             {
-                return StatusCode(500, "Internal Servor Error");
+                return StatusCode(500, "Internal Server Error");
             }
         }
 

@@ -1,9 +1,12 @@
-﻿using Domain.Models;
+﻿using Application.Behavior;
+using Application.Behavior.Validators;
+using Application.Behavior.Validators.Common;
+using Domain.Models;
 using MediatR;
 
 namespace Application.Movies.Queries.Horrors.GetHorrorMovieByTitle
 {
-    public class GetHorrorMovieByTitleQuery : IRequest<List<Movie>>
+    public class GetHorrorMovieByTitleQuery : IRequest<List<Movie>>, IValidate
     {
         public GetHorrorMovieByTitleQuery(string title)
         {
@@ -11,5 +14,10 @@ namespace Application.Movies.Queries.Horrors.GetHorrorMovieByTitle
         }
 
         public string Title { get; }
+
+        public void Validate()
+        {
+            ValidationHelper.ValidateAndThrow(Title, new StringValidator());
+        }
     }
 }
