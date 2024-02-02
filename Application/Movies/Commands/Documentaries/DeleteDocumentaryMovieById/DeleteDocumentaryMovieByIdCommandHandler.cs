@@ -15,7 +15,7 @@ namespace Application.Movies.Commands.Documentaries.DeleteDocumentaryMovieById
 
         public async Task<bool> Handle(DeleteDocumentaryMovieByIdCommand request, CancellationToken cancellationToken)
         {
-            Movie documentaryMovieToDelete = await _movieRepository.GetByIdAsync(request.MovieId) ?? throw new EntityNotFoundException("documentary", request.MovieId);
+            Movie documentaryMovieToDelete = await _movieRepository.GetByIdAsync(request.MovieId) ?? throw new EntityNotFoundException("Documentary", request.MovieId);
 
             if (documentaryMovieToDelete == null)
             {
