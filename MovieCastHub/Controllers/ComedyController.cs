@@ -1,4 +1,5 @@
 ﻿using Application.Dtos.Movie;
+using Application.Exceptions;
 using Application.Movies.Commands.Comedies.AddComedyMovie;
 using Application.Movies.Commands.Comedies.DeleteComedyMovieById;
 using Application.Movies.Commands.Comedies.UpdateComedyMovieById;
@@ -26,11 +27,14 @@ namespace API.Controllers
         [Route("getAllComedyMovies")]
         public async Task<IActionResult> GetAllComedyMovies()
         {
-
             try
             {
                 var comedyMovies = await _mediator.Send(new GetAllComedyMoviesQuery());
-                return comedyMovies == null ? NotFound("No comedy movies found.") : Ok(comedyMovies);
+                return Ok(comedyMovies);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
@@ -48,6 +52,10 @@ namespace API.Controllers
                 var comedyMovie = await _mediator.Send(new GetComedyMovieByTitleQuery(title));
                 return comedyMovie == null ? NotFound($"No movie found with title '{title}'.") : Ok(comedyMovie);
             }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
             catch (Exception)
             {
                 return StatusCode(500, "Internal Servor Error");
@@ -62,6 +70,10 @@ namespace API.Controllers
             {
                 var comedyMovie = await _mediator.Send(new GetComedyMovieByDirectorQuery(director));
                 return comedyMovie == null ? NotFound($"No movie found with title '{director}'.") : Ok(comedyMovie);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception)
             {
@@ -88,16 +100,38 @@ namespace API.Controllers
         [Route("updateComedyMovie/{updatedComedyMovieId}")]
         public async Task<IActionResult> UpdateComedyMovie([FromBody] UpdateMovieDto updatedComedyMovie, Guid updatedComedyMovieId)
         {
-            var result = await _mediator.Send(new UpdateComedyMovieByIdCommand(updatedComedyMovie, updatedComedyMovieId));
-            return result == null ? NotFound($"No bird found with ID '{updatedComedyMovieId}' for updating.") : Ok(updatedComedyMovie);
+            try
+            {
+                var result = await _mediator.Send(new UpdateComedyMovieByIdCommand(updatedComedyMovie, updatedComedyMovieId));
+                return Ok(updatedComedyMovie);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
         }
 
         [HttpDelete]
         [Route("deleteComedyMovie/{deletedComedyMovieId}")]
         public async Task<IActionResult> DeleteComedyMovie(Guid deletedComedyMovieId)
         {
-            var result = await _mediator.Send(new DeleteComedyMovieByIdCommand(deletedComedyMovieId));
-            return result != null ? Ok($"Movie with ID '{deletedComedyMovieId}' has been deleted.") : NotFound($"No Movie found with ID '{deletedComedyMovieId}' for deletion.");
+            try
+            {
+                var result = await _mediator.Send(new DeleteComedyMovieByIdCommand(deletedComedyMovieId));
+                return Ok($"Movie with ID '{deletedComedyMovieId}' has been deleted.");
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Servor Error");
+            }
         }
     }
 }

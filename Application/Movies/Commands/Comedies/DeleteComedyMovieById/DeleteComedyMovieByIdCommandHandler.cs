@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Application.Exceptions;
+using Domain.Models;
 using Infrastructure.Interfaces;
 using MediatR;
 
@@ -14,7 +15,7 @@ namespace Application.Movies.Commands.Comedies.DeleteComedyMovieById
 
         public async Task<bool> Handle(DeleteComedyMovieByIdCommand request, CancellationToken cancellationToken)
         {
-            Movie comedyMovieToDelete = await _movieRepository.GetByIdAsync(request.MovieId);
+            Movie comedyMovieToDelete = await _movieRepository.GetByIdAsync(request.MovieId) ?? throw new EntityNotFoundException("Comedy", request.MovieId);
 
             if (comedyMovieToDelete == null)
             {
