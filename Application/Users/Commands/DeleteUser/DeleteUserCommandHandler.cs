@@ -1,4 +1,5 @@
-﻿using Infrastructure.Interfaces;
+﻿using Application.Exceptions;
+using Infrastructure.Interfaces;
 using MediatR;
 
 
@@ -15,11 +16,7 @@ namespace Application.Users.Commands.DeleteUser
         }
         public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserByIdAsync(request.UserId);
-            if (user == null)
-            {
-                throw new ArgumentException("User not found");
-            }
+            var user = await _userRepository.GetUserByIdAsync(request.UserId) ?? throw new EntityNotFoundException("User", request.UserId);
 
             await _userRepository.DeleteUserAsync(request.UserId);
         }

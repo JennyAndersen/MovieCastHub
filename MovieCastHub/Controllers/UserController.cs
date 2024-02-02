@@ -1,4 +1,5 @@
 ﻿using Application.Dtos.User;
+using Application.Exceptions;
 using Application.Users.Commands.CreateUser;
 using Application.Users.Commands.DeleteUser;
 using Application.Users.Commands.UpdateUser;
@@ -51,11 +52,10 @@ namespace API.Controllers
                 var user = await _mediator.Send(query);
                 return Ok(user);
             }
-            catch (ArgumentException ex)
+            catch (EntityNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-
         }
 
         [HttpPost("Register")]
@@ -82,11 +82,10 @@ namespace API.Controllers
                 var updatedUser = await _mediator.Send(command);
                 return Ok(updatedUser);
             }
-            catch (ArgumentException ex) when (ex.Message == "User not found")
+            catch (EntityNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-
         }
 
         [HttpDelete("DeleteUser/{id}")]
@@ -98,12 +97,10 @@ namespace API.Controllers
                 await _mediator.Send(command);
                 return Ok("Delete successful");
             }
-            catch (ArgumentException ex)
+            catch (EntityNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-
         }
-
     }
 }
