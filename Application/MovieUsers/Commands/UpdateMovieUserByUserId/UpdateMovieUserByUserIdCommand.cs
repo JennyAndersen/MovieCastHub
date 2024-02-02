@@ -1,8 +1,11 @@
-﻿using MediatR;
+﻿using Application.Behavior;
+using Application.Behavior.Validators;
+using Application.Behavior.Validators.Common;
+using MediatR;
 
 namespace Application.MovieUsers.Commands.UpdateMovieUserByUserId
 {
-    public class UpdateMovieUserByUserIdCommand : IRequest<bool>
+    public class UpdateMovieUserByUserIdCommand : IRequest<bool>, IValidate
     {
         public UpdateMovieUserByUserIdCommand(float newUserRating)
         {
@@ -11,5 +14,11 @@ namespace Application.MovieUsers.Commands.UpdateMovieUserByUserId
 
         public Guid UserMovieId { get; }
         public float NewUserRating { get; }
+
+        public void Validate()
+        {
+            ValidationHelper.ValidateAndThrow(UserMovieId, new GuidValidator());
+            ValidationHelper.ValidateAndThrow(NewUserRating, new FloatValidator());
+        }
     }
 }
