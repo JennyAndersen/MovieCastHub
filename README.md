@@ -21,7 +21,7 @@ Följ dessa steg för att komma igång med vår filmapplikation:
 öppna visual studio och klicka på "Clone a repository"
 
 därefter klona projektet till din lokala miljö genom att klistra in denna länk på din visialstudio
-"https://github.com/ditt-anvandarnamn/din-repo.git"
+"(https://github.com/JennyAndersen/MovieCastHub.git)"
 
 Byt conection i appsetting strängen så den får tillgång till SSMS på din maskin
 när det är gjort gör en add migration och en  ef update db så att databasen är uppdaterad 

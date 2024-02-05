@@ -4,6 +4,7 @@ using Application.MovieUsers.Commands.DeleteMovieUserById;
 using Application.MovieUsers.Commands.UpdateMovieUserByUserId;
 using Application.MovieUsers.Queries.GetAll;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -21,6 +22,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("getAllMovieUsers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllMovieUsers()
         {
             try
@@ -36,6 +38,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("addNewMovieUser")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddMovieUser([FromBody] MovieUserDto newMovieUser)
         {
             try
@@ -52,6 +55,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("updateMovieUser/{updatedUserMovieId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateMovieUser(UpdateMovieUserByUserIdCommand command)
         {
             try
@@ -68,6 +72,7 @@ namespace API.Controllers
 
         [HttpDelete]
         [Route("deleteMovieUser/{deletedUserMovieId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteMovieUser(Guid deletedUserMovieId)
         {
             try

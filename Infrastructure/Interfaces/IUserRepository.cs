@@ -9,5 +9,9 @@ namespace Infrastructure.Interfaces
         Task<User> CreateUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(Guid userId);
+        Task<User> GetUserByUsernameAsync(string username);
+        bool VerifyPassword(string inputPassword, string hashedPassword);
+
+
     }
 }

@@ -20,13 +20,15 @@ namespace Infrastructure.Data
         {
             if (!dbContext.Users.Any())
             {
+                var roles = new List<string> { "Admin", "User", "SuperUser" };
                 for (int i = 0; i < 5; i++)
                 {
                     dbContext.Users.Add(new User
                     {
                         UserId = Guid.NewGuid(),
                         Username = Usernames[i % Usernames.Count],
-                        Password = "password" + (i + 1).ToString()
+                        Password = BCrypt.Net.BCrypt.HashPassword("password" + (i + 1)),
+                        Role = roles[i % roles.Count]
                     });
                 }
                 dbContext.SaveChanges();
