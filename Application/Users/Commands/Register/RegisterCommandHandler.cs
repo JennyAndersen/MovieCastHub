@@ -23,7 +23,8 @@ namespace Application.Users.Commands.CreateUser
             var newUser = new User
             {
                 Username = request.UserDto.Username,
-                Password = request.UserDto.Password
+                Password = request.UserDto.Password,
+                Role = "User"
             };
 
             return await _userRepository.CreateUserAsync(newUser);

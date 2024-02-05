@@ -6,6 +6,7 @@ using Application.Movies.Queries.Documentaries.GetAllDocumentary;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByDirector;
 using Application.Movies.Queries.Documentaries.GetDocumentaryMovieByTitle;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -68,6 +69,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("addNewDocumentaryMovie")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddDocumentaryMovie([FromBody] DocumentaryMovieDto newDocumentaryMovie)
         {
             try
@@ -83,6 +85,7 @@ namespace API.Controllers
 
         [HttpPut]
         [Route("updateDocumentaryMovie/{updatedDocumentaryMovieId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateDocumentaryMovie([FromBody] UpdateMovieDto updatedDocumentaryMovie, Guid updatedDocumentaryMovieId)
         {
             var result = await _mediator.Send(new UpdateDocumentaryMovieByIdCommand(updatedDocumentaryMovie, updatedDocumentaryMovieId));
@@ -91,6 +94,7 @@ namespace API.Controllers
 
         [HttpDelete]
         [Route("deleteDocumentaryMovie/{deletedDocumentaryMovieId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteDocumentaryMovie(Guid deletedDocumentaryMovieId)
         {
             var result = await _mediator.Send(new DeleteDocumentaryMovieByIdCommand(deletedDocumentaryMovieId));

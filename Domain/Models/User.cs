@@ -6,6 +6,7 @@ namespace Domain.Models
         public Guid UserId { get; set; }
         public required string Username { get; set; }
         public required string Password { get; set; }
+        public string Role { get; set; }
         public ICollection<UserMovie> UserMovies { get; set; }
     }
 }

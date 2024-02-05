@@ -30,6 +30,7 @@ namespace Infrastructure.Repositories
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                     new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Role, user.Role)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -40,8 +41,18 @@ namespace Infrastructure.Repositories
 
         public async Task<User> ValidateUserCredentialsAsync(string username, string password)
         {
-            var users = await _userRepository.GetAllUsersAsync();
-            var user = users.FirstOrDefault(u => u.Username == username && u.Password == password);
+            var user = await _userRepository.GetUserByUsernameAsync(username);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            bool passwordVerified = _userRepository.VerifyPassword(password, user.Password);
+            if (!passwordVerified)
+            {
+                return null;
+            }
 
             return user;
         }
