@@ -6,6 +6,7 @@ using Application.Users.Queries.UserLogin;
 using Application.Users.Querys.GetAllUsers;
 using Application.Users.Querys.GetUsersById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -35,6 +36,7 @@ namespace API.Controllers
         }
 
         [HttpGet("GetAllUsers")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<UserDto>>> GetAllUsers()
         {
             var query = new GetAllUsersQuery();
@@ -43,6 +45,7 @@ namespace API.Controllers
         }
 
         [HttpGet("GetUserById/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUserById(Guid id)
         {
             try
@@ -74,6 +77,7 @@ namespace API.Controllers
         }
 
         [HttpPut("UpdateUser/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserUpdateDto userUpdateDto)
         {
             try
@@ -90,6 +94,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("DeleteUser/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
             try
